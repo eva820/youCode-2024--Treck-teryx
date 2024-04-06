@@ -14,8 +14,10 @@ def fetch_posts():
         return []
 
 # Function to search for products by gender, color, and product type in title or description
-def search_products(products, gender, color, product_type):
-    matching_products = []
+def search_products(products, gender, color, product_type, size):
+    # matching_products = []
+    matching_products_dict = {}  #
+    
     for product in products:
         # Check if gender matches
         if product['gender'].lower() != gender.lower():
@@ -27,25 +29,35 @@ def search_products(products, gender, color, product_type):
             continue
         
         # Check if product type is mentioned in title or description
-        if product_type.lower() not in product['title'].lower() and product_type.lower() not in product['description'].lower():
+        product_type_match = product_type.lower() in product['title'].lower() or product_type.lower() in product['description'].lower()
+        if not product_type_match:
             continue
         
-        matching_products.append(product)
+        # Assuming size information can be derived from description or another field
+        size_match = size.lower() in product['description'].lower()  # This condition depends on actual data structure
+        if not size_match:
+            continue
+        
+        # Adding product to the dictionary using pid as key
+        matching_products_dict[product['pid']] = product
+
+        
     
-    return matching_products
+    return matching_products_dict
 
 # Main function
 def main():
     gender = input("Enter gender (men or women): ")
     color = input("Enter color: ")
     product_type = input("Enter product type (e.g., shoes, jacket): ")
+    size = input("Enter size(xs, s, m, l, xl): ") 
     
     products = fetch_posts()
-    matching_products = search_products(products, gender, color, product_type)
+    matching_products_dict = search_products(products, gender, color, product_type, size)
     
-    if matching_products:
-        print(f"Found {len(matching_products)} products matching criteria:")
-        for product in matching_products:
+    if matching_products_dict:
+        print(f"Found {len(matching_products_dict)} products matching criteria:")
+        for pid, product in matching_products_dict.items():
             print(f"- {product['title']}")
     else:
         print("No products found matching criteria.")
