@@ -11,75 +11,44 @@ body {
   position: relative;
 }
 
-.overlay {
-  background-color: rgba(255, 255, 255, 0.5);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.App-header {
+  background-color: #529E19;
+  padding: 0px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-}
-
-.site-logo {
-  width: 100px;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-.survey-box {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 40px;
-  border-radius: 20px;
-  text-align: center;
-  animation: fadeIn 1s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.survey-box h1 {
-  margin-bottom: 20px;
-}
-
-.button-group {
-  display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  font-size: 20px;
+  font-weight: bolder;
+  color: white;
+}
+
+.survey {
+  display: block;
+  margin: auto;
+  margin-top: 150px;
+  border: 1px solid #000000;
+  border-radius :10px;
+  padding: 20px;
+  background-color: white;
+  width: 250px;
+}
+
+.survey-title {
   margin-bottom: 20px;
+  text-align: center;
 }
 
-.button-group button {
-  background-color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
-  border-radius: 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.button-group button.selected {
-  background-color: #f0f0f0;
-}
-
-button[type="submit"] {
-  background-color: #008000;
-  color: #ffffff;
-}
-
-button[type="submit"]:hover {
-  background-color: #006400;
-}
-
-p {
+.button {
+  display: block;
+  margin: auto;
   margin-top: 20px;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.options{
+  margin-left: 20px;
+  margin-top: 5px;
 }
