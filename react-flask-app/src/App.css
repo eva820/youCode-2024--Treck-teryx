@@ -5,8 +5,7 @@ body {
 }
 
 :root {
-  --header-color: #529E19; /* Define a color variable */
-  --text-size: 30px
+  --text-size: 20px
 }
 
 .App {
@@ -17,7 +16,7 @@ body {
 }
 
 .App-header {
-  background-color: var(--header-color);
+  background-color: #294b5e;
   padding: 0px;
   display: flex;
   flex-direction: column;
@@ -49,6 +48,7 @@ body {
 .landing p {
   font-size: var(--text-size);
   margin-bottom: 30px; /* Spacing between text and button */
+  line-height: 30px;
 }
 .landing button {
   display: block;
@@ -56,6 +56,11 @@ body {
   border-radius: 100px;
   padding: 20px 50px;
   font-size: var(--text-size);
+}
+
+.background {
+  background-image: url('background.png');
+  background-size: cover;
 }
 
 .survey {
