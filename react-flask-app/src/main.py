@@ -16,6 +16,14 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/get-size', methods=['GET'])
+def get_measurements():
+    with open('measurements.json', 'r') as file:
+        measurements_data = json.load(file)
+    return jsonify(measurements_data)
+
+    
+
 def body_in_frame(landmarks, mp_pose):
     left = landmarks[mp_pose.PoseLandmark.LEFT_HEEL.value].y
     right = landmarks[mp_pose.PoseLandmark.RIGHT_HEEL.value].y

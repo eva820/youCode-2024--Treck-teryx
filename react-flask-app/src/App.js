@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import './App.css';
 import Stores from './Stores';
-import RecommendProduct from './recommendProduct';
+import RecommendProduct from './RecommendProduct';
 import axios from 'axios';
 import ProductsComponent from './products';
 
