@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react';
 import './App.css';
 import Stores from './Stores';
 import RecommendProduct from './RecommendProduct';
+import axios from 'axios';
 import ProductsComponent from './products';
 
 function Header() {
@@ -142,6 +143,11 @@ const ChecklistSurvey = () => {
     };
   
     const beginScan = () => {
+      const height_data = {
+        height: inputValue
+      }
+      axios.post('http://127.0.0.1:8080/height', height_data)
+
       startVideo();
       setVideoStart(true);
       console.log('Submitted value:', inputValue);
@@ -168,14 +174,22 @@ const ChecklistSurvey = () => {
           </>
         ) : (
           <>
-          <div className="video">
-            <div>
-              <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} />
+            <div className="video">
+              {surveyCompleted ? (
+                <div>
+                  <p>Scan completed!</p>
+                </div>
+              ) : (
+                <>
+                  <div>
+                    <img src='http://127.0.0.1:8080/webcam' style={{ maxWidth: '100%' }}></img>
+                  </div>
+                  <div className="button-container">
+                    <button className="button" onClick={() => { setSurveyCompleted(true) }}>Finish</button>
+                  </div>
+                </>
+              )}
             </div>
-            <div className="button-container">
-              <button className="button" onClick={() => {setSurveyCompleted(true)}}>Finish</button>
-            </div>
-          </div>
           </>
         )
         }

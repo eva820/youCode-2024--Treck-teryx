@@ -1,4 +1,4 @@
-from flask import Flask, Response, request, send_file
+from flask import Flask, Response, request, send_file, jsonify
 import cv2
 import base64
 import json
@@ -8,6 +8,10 @@ import numpy as np
 import time
 import torch
 import math
+from openai import OpenAI
+import os
+from dotenv import load_dotenv
+
 
 app = Flask(__name__)
 CORS(app)
@@ -89,6 +93,34 @@ def find_height(avg_tensor, mp_pose):
     return math.sqrt((avg_tensor[nose][0] - avg_bottom_x)**2 + (avg_tensor[nose][1] - avg_bottom_y)**2)
 
 
+@app.route('/test-gpt')
+# def askGPT(height, hpct, spct, ipct):
+def askGPT():
+    height = 74
+    hpct = 0.7
+    spct = 0.27
+    ipct = 0.33
+
+    load_dotenv
+    api_key = os.getenv("OPENAI_API_KEY")
+    print(api_key)
+    client = OpenAI(api_key=api_key)
+
+    # Define messages to send to the API
+    messages = [
+        {"role": "system", "content": "You are tasked with providing appropriate jacket and pant sizes based on the provided measurements."},
+        {"role": "user", "content": "Height: 180 cm\nPercentage of screen covered: 60%\nPercentage of sleeve length: 70%\nPercentage of inseam: 80%"}
+    ]
+
+    # Call OpenAI API to generate completions
+    completion = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=messages
+    )
+
+    generated_response = completion.choices[0].message
+    print(generated_response)
+
 
 
 def webcam(mp_drawing, mp_pose):
@@ -160,14 +192,25 @@ def webcam(mp_drawing, mp_pose):
     avg_tensor = torch.mean(tensor_data[:, :, :], dim=0)
     # for i,tns in enumerate(avg_tensor):
     #     print(tns, i)
+    height_data = ''
+    with open('height.json', 'r') as file:
+        height_data = json.load(file)
+
+    # Access the value of the "height" key
+    height = float(height_data['height'])
+
     height_pct = find_height(avg_tensor, mp_pose)
     sleeve_pct = find_sleeve(avg_tensor, mp_pose)
     inseam_pct = find_inseam(avg_tensor, mp_pose)
+    fact = height / height_pct
+
+    print(height, height_pct, sleeve_pct, inseam_pct)
+    
+    askGPT(height, height_pct, sleeve_pct, inseam_pct)
 
     data = {
-        "height": height_pct,
-        "sleeve": sleeve_pct,
-        "inseam": inseam_pct
+        "sleeve": sleeve_pct * fact,
+        "inseam": inseam_pct * fact
     }
 
     # Convert the dictionary to JSON
@@ -184,12 +227,26 @@ def webcam(mp_drawing, mp_pose):
 #@app.route('/webcam', methods=['POST'])
 @app.route('/webcam')
 def webcam_display():
-    data = request.data
-    print(data)
 
     mp_drawing = mp.solutions.drawing_utils
     mp_pose = mp.solutions.pose
     return Response(webcam(mp_drawing, mp_pose), mimetype='multipart/x-mixed-replace;boundary=frame')
+
+@app.route('/height', methods=['POST'])
+def get_height():
+    data = request.get_json()
+    height = data.get('height')
+
+    if height is not None:
+        height_data = {'height': data.get('height')}
+        with open('height.json', 'w') as file:
+            json.dump(height_data, file)
+        return jsonify({'height': height}), 200
+    else:
+        return jsonify({'error': 'Height not provided'}), 400  # Return 400 (Bad Request) if height is None
+
+
+
 
 @app.route('/store-data')
 def get_json_data():
