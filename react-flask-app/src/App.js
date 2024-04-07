@@ -8,7 +8,7 @@ import ProductsComponent from './products';
 function Header() {
   return (
     <header className="App-header">
-      <p>Treck'teryx</p>
+      <p>YouCode 2024 - Trek'teryx Official Site</p>
     </header>
   )
 }
