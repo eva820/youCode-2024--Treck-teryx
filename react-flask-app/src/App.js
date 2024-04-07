@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 // import MapComponent from './TrailRec'
+import ProductsComponent from './products'
 
 
 
@@ -14,9 +15,9 @@ function App() {
         {/* <p> */}
           {/* Edit <code>src/App.js</code> and save to reload.
            */}
-           {/* <ProductsComponent>
+           <ProductsComponent>
 
-           </ProductsComponent> */}
+           </ProductsComponent>
            
         {/* </p> */}
         <a
