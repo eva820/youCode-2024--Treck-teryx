@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import Stores from "./Stores";
 
-export function RecommendProduct() {
-    return (
-      <div className="recommendation">
+const RecommendProduct = () => {
+  
+  const [showNearestStore, setShowNearestStore] = useState(false);
+
+  return (
+    !showNearestStore ? (
+      <div className = "recommendation" >
         <div className="product">
           <p>bla</p>
         </div>
@@ -12,7 +17,7 @@ export function RecommendProduct() {
           <p>Based on your preferences and your personalized measurements, we have determined "product_name" to be the best for you!</p>
           <div className="button-container">
             <button className="button" type="button">Buy Online</button>
-            <button className="button" type="button">Find Nearest Store</button>
+            <button className="button" type="button" onClick={() => {setShowNearestStore(true)}}>Find Nearest Store</button>
           </div>
         </div>
         <div className="grid">
@@ -29,6 +34,13 @@ export function RecommendProduct() {
             bla
           </div>  
         </div>
+      </div >
+    ) : (
+      <div className="stores">
+        <Stores />
       </div>
+    )
     );
   }
+
+export default RecommendProduct;

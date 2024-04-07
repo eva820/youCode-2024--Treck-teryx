@@ -31,7 +31,7 @@ const Stores = () => {
 
 	return (
 		<div className='list'>
-			<h1>Store Locations:</h1>
+			<h1 className="survey-title">Stores Near Me:</h1>
 			<StoreLocationsList locations={storeLocations}/>
 		</div>
 
