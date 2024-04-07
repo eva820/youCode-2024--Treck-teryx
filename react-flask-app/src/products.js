@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Stores from "./Stores";
 
 const ProductsComponent = () => {
   const [products, setProducts] = useState([]);
@@ -228,12 +229,6 @@ const ProductsComponent = () => {
             <option value="climbing">Climbing</option>
             <option value="skiing">Skiing</option>
             <option value="Any">Any</option>
-
-
-
-
-
-
             {/* Add more color options as needed */}
           </select>
         </label>
@@ -270,7 +265,8 @@ const ProductsComponent = () => {
 
   </div>
   );
-};
+}
+
 
 export default ProductsComponent;
 

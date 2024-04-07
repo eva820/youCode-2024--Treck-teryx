@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import './App.css';
 import Stores from './Stores';
-import RecommendProduct from './RecommendProduct';
+import RecommendProduct from './recommendProduct';
 import axios from 'axios';
 import ProductsComponent from './products';
 
@@ -75,6 +75,19 @@ const questions = [
       { text: 'Brown', value: 'brown' },
       { text: 'Purple', value: 'purple' },
       { text: 'Pink', value: 'pink' },
+      // Add more color preferences as needed
+    ]
+  },
+  { 
+    text: 'Size', 
+    options: [
+      { text: 'XXS', value: 'XXS' },
+      { text: 'XS', value: 'XS' },
+      { text: 'S', value: 'S' },
+      { text: 'M', value: 'M' },
+      { text: 'L', value: 'L' },
+      { text: 'XL', value: 'XL' },
+      { text: 'XXL', value: 'XXL' },
       // Add more color preferences as needed
     ]
   },
@@ -198,48 +211,6 @@ const ChecklistSurvey = () => {
   
   };  
 
-  // const runSurvey = () => {
-  //   return (
-  //   <div>
-  //     {!initiateBodyScan ?
-  //       (<div className="survey">
-  //         <>
-  //           <h3 className="survey-title">{questions[currentQuestion].text}</h3>
-  //           <form>
-  //            {questions[currentQuestion].options.map((option, index) => (
-  //               <div className="options" key={index}>
-  //                 <label>
-  //                   <input
-  //                     type="checkbox"
-  //                     value={option.value} // Use option.value for the value attribute
-  //                     checked={selectedOptions.includes(option)}
-  //                     onChange={() => handleOptionSelect(option)}
-  //                   />
-  //                   {option}
-  //                 </label>
-  //               </div>
-  //             ))}
-  //             <div className="button-container">
-  //               {currentQuestion === questions.length - 2 ? (
-  //                 <>
-  //                   <button className="button" type="button" onClick={() => { setInitiateBodyScan(true) }}>Scan For Size!</button>
-  //                   <button className="button" type="button" onClick={handleNextQuestion}>Input Size</button>
-  //                 </>
-  //               ) : (
-  //                 <button className="button" type="button" onClick={handleNextQuestion}>Next</button>
-  //               )}
-  //             </div>
-  //           </form>
-  //         </>
-  //       </div>
-  //       ) : (
-  //         <div>
-  //           <BodyScan />
-  //         </div>
-  //       )}
-  //   </div>
-  //   )
-  // }
   const runSurvey = () => {
     return (
       <div>
