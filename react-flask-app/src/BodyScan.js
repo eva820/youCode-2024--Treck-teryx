@@ -22,7 +22,7 @@ export function BodyScan() {
         <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} />
       </div>
       <div className="button-container">
-        <button className="button" onClick={startVideo}>Find Size!</button>
+        <button className="button" onClick={startVideo}>Begin Scan!</button>
       </div>
     </div>
   );
