@@ -2,9 +2,8 @@ import React, { useState, useRef } from 'react';
 import './App.css';
 // import { BodyScan } from './BodyScan';
 import ProductsComponent from './products';
-import Stores from './Stores';
-import RecommendProduct from './RecommendProduct';
-
+// import Stores from './Stores';
+import RecommendProduct from './recommendProduct';
 
 function Header() {
   return (
@@ -192,9 +191,9 @@ function App() {
   return (
     <div className="background">
       <div className="App">
-        {/* <Header />
-        <Landing /> */}
-        <ProductsComponent/> 
+        <Header />
+        <Landing />
+        {/*<ProductsComponent/> */}
       </div>
     </div>
   )
