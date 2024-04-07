@@ -3,6 +3,8 @@ from flask import Flask, Response, request, send_file
 #import base64
 import json
 from flask_cors import CORS  # Import CORS from flask_cors
+import io
+from PIL import Image
 #import mediapipe as mp
 #import numpy as np
 #import time
@@ -188,10 +190,22 @@ CORS(app)
 #     mp_pose = mp.solutions.pose
 #     return Response(webcam(mp_drawing, mp_pose), mimetype='multipart/x-mixed-replace;boundary=frame')
 
+@app.route('/webcam')
+def webcam_dummy():
+	# Create a blank white image
+    dummy_image = Image.new("RGB", (640, 480), "white")
+    
+    # Convert image to bytes
+    img_byte_array = io.BytesIO()
+    dummy_image.save(img_byte_array, format='JPEG')
+    img_byte_array.seek(0)
+    
+    # Return the response with the image
+    return Response(img_byte_array, mimetype='image/jpeg')
+
 @app.route('/store-data')
 def get_json_data():
 	return send_file('sliced-store-data.json')
-
 
 if __name__ == '__main__':
     app.run(debug = True, port = 8080)

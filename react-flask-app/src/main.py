@@ -31,7 +31,6 @@ def body_in_frame(landmarks, mp_pose):
     if nose > 0.2:
         return False
 
-    return True
 
 # pair is the two landmarks we want to measure between
 def get_distance_between_two_t(avg_tensor, pair):
@@ -101,25 +100,28 @@ def askGPT():
     spct = 0.27
     ipct = 0.33
 
-    load_dotenv
-    api_key = os.getenv("OPENAI_API_KEY")
-    print(api_key)
-    client = OpenAI(api_key=api_key)
+    # load_dotenv
+    # api_key = os.getenv("OPENAI_API_KEY")
+    # print(api_key)
+    client = OpenAI()
+    #print(client.api_key)
 
     # Define messages to send to the API
     messages = [
-        {"role": "system", "content": "You are tasked with providing appropriate jacket and pant sizes based on the provided measurements."},
-        {"role": "user", "content": "Height: 180 cm\nPercentage of screen covered: 60%\nPercentage of sleeve length: 70%\nPercentage of inseam: 80%"}
+       {"role": "system", "content": "You are tasked with providing appropriate jacket and pant sizes based on the provided measurements."},
+       {"role": "user", "content": "Height: 180 cm\nPercentage of screen covered: 60%\nPercentage of sleeve length: 70%\nPercentage of inseam: 80%"}
     ]
 
     # Call OpenAI API to generate completions
     completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=messages
+       model="gpt-3.5-turbo",
+       messages=messages
     )
 
     generated_response = completion.choices[0].message
     print(generated_response)
+
+    return jsonify({'error': 'Height not provided'}), 200  # Return 400 (Bad Request) if height is None
 
 
 
