@@ -1,0 +1,34 @@
+{
+    "sourceFile": "react-flask-app/src/App.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1712444203059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1712444489464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,19 @@\n import logo from './logo.svg';\n import './App.css';\n-import './products'; \n+import ProductsComponent from './products'; \n \n function App() {\n   return (\n     <div className=\"App\">\n       <header className=\"App-header\">\n         <img src={logo} className=\"App-logo\" alt=\"logo\" />\n         <p>\n-          Edit <code>src/App.js</code> and save to reload.\n+          {/* Edit <code>src/App.js</code> and save to reload.\n+           */}\n+           <ProductsComponent>\n+            \n+           </ProductsComponent>\n         </p>\n         <a\n           className=\"App-link\"\n           href=\"https://reactjs.org\"\n"
+                },
+                {
+                    "date": 1712445010299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,30 @@\n+import logo from './logo.svg';\n+import './App.css';\n+import ProductsComponent from './products'; \n+\n+function App() {\n+  return (\n+    <div className=\"App\">\n+      <header className=\"App-header\">\n+        <img src={logo} className=\"App-logo\" alt=\"logo\" />\n+        <p>\n+          {/* Edit <code>src/App.js</code> and save to reload.\n+           */}\n+           {/* <ProductsComponent>\n+\n+           </ProductsComponent> */}\n+        </p>\n+        <a\n+          className=\"App-link\"\n+          href=\"https://reactjs.org\"\n+          target=\"_blank\"\n+          rel=\"noopener noreferrer\"\n+        >\n+          Learn React\n+        </a>\n+      </header>\n+    </div>\n+  );\n+}\n+\n+export default App;\n"
+                },
+                {
+                    "date": 1712445286526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,40 +9,10 @@\n         <img src={logo} className=\"App-logo\" alt=\"logo\" />\n         <p>\n           {/* Edit <code>src/App.js</code> and save to reload.\n            */}\n-           {/* <ProductsComponent>\n+           <ProductsComponent>\n \n-           </ProductsComponent> */}\n-        </p>\n-        <a\n-          className=\"App-link\"\n-          href=\"https://reactjs.org\"\n-          target=\"_blank\"\n-          rel=\"noopener noreferrer\"\n-        >\n-          Learn React\n-        </a>\n-      </header>\n-    </div>\n-  );\n-}\n-\n-export default App;\n-import logo from './logo.svg';\n-import './App.css';\n-import ProductsComponent from './products'; \n-\n-function App() {\n-  return (\n-    <div className=\"App\">\n-      <header className=\"App-header\">\n-        <img src={logo} className=\"App-logo\" alt=\"logo\" />\n-        <p>\n-          {/* Edit <code>src/App.js</code> and save to reload.\n-           */}\n-           <ProductsComponent>\n-            \n            </ProductsComponent>\n         </p>\n         <a\n           className=\"App-link\"\n"
+                },
+                {
+                    "date": 1712447042867,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,15 +6,15 @@\n   return (\n     <div className=\"App\">\n       <header className=\"App-header\">\n         <img src={logo} className=\"App-logo\" alt=\"logo\" />\n-        <p>\n+        {/* <p> */}\n           {/* Edit <code>src/App.js</code> and save to reload.\n            */}\n            <ProductsComponent>\n \n            </ProductsComponent>\n-        </p>\n+        {/* </p> */}\n         <a\n           className=\"App-link\"\n           href=\"https://reactjs.org\"\n           target=\"_blank\"\n"
+                }
+            ],
+            "date": 1712444203059,
+            "name": "Commit-0",
+            "content": "import logo from './logo.svg';\nimport './App.css';\nimport './products'; \n\nfunction App() {\n  return (\n    <div className=\"App\">\n      <header className=\"App-header\">\n        <img src={logo} className=\"App-logo\" alt=\"logo\" />\n        <p>\n          Edit <code>src/App.js</code> and save to reload.\n        </p>\n        <a\n          className=\"App-link\"\n          href=\"https://reactjs.org\"\n          target=\"_blank\"\n          rel=\"noopener noreferrer\"\n        >\n          Learn React\n        </a>\n      </header>\n    </div>\n  );\n}\n\nexport default App;\n"
+        }
+    ]
+}

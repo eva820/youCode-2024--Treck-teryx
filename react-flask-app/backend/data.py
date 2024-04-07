@@ -1,4 +1,9 @@
 import requests
+from flask import Flask, jsonify
+
+# app = Flask(__name__)
+
+# @app.route('/api/products', methods=['GET'])
 
 # Function to fetch posts
 def fetch_posts():
@@ -56,10 +61,12 @@ def main():
     matching_products_dict = search_products(products, gender, color, product_type, size)
     
     if matching_products_dict:
+        return jsonify(matching_products_dict)
         print(f"Found {len(matching_products_dict)} products matching criteria:")
         for pid, product in matching_products_dict.items():
             print(f"- {product['title']}")
     else:
+        return jsonify(products=matching_products_dict) 
         print("No products found matching criteria.")
 
 if __name__ == "__main__":
