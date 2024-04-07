@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import { BodyScan } from './BodyScan';
+import ProductsComponent from './products';
 
 function Header() {
   return (
@@ -131,8 +132,9 @@ function App() {
   return (
     <div className="background">
       <div className="App">
-        <Header />
-        <Landing />
+        {/* <Header />
+        <Landing /> */}
+        <ProductsComponent/> 
       </div>
     </div>
   )
