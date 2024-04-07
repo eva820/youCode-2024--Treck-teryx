@@ -1,6 +1,7 @@
-from flask import Flask, Response
+from flask import Flask, Response, request
 import cv2
 import base64
+import json
 from flask_cors import CORS  # Import CORS from flask_cors
 import mediapipe as mp
 import numpy as np
@@ -63,7 +64,7 @@ def find_sleeve(avg_tensor, mp_pose):
     d1 = get_distance_t(avg_tensor, [mp_pose.PoseLandmark.LEFT_SHOULDER.value, mp_pose.PoseLandmark.LEFT_ELBOW.value, mp_pose.PoseLandmark.LEFT_WRIST.value])
     d2 = get_distance_t(avg_tensor, [mp_pose.PoseLandmark.RIGHT_SHOULDER.value, mp_pose.PoseLandmark.RIGHT_ELBOW.value, mp_pose.PoseLandmark.RIGHT_WRIST.value])
 
-    base_tensor = base_neck_tensor(avg_tensor)
+    base_tensor = base_neck_tensor(avg_tensor, mp_pose)
     print(base_tensor)
 
     d1 += math.sqrt((base_tensor[0] - avg_tensor[mp_pose.PoseLandmark.LEFT_SHOULDER.value][0])**2 + (base_tensor[1] - avg_tensor[mp_pose.PoseLandmark.LEFT_SHOULDER.value][1])**2)
@@ -126,7 +127,7 @@ def webcam(mp_drawing, mp_pose):
                     measurements.append(landmarks)
                     
                     # quit when we have 3 seconds of data
-                    if time.time() - start > 1:
+                    if time.time() - start > 3:
                         quit = True
                 
             # except:
@@ -159,19 +160,33 @@ def webcam(mp_drawing, mp_pose):
     avg_tensor = torch.mean(tensor_data[:, :, :], dim=0)
     # for i,tns in enumerate(avg_tensor):
     #     print(tns, i)
-    print(find_height(avg_tensor, mp_pose))
+    height_pct = find_height(avg_tensor, mp_pose)
+    sleeve_pct = find_sleeve(avg_tensor, mp_pose)
+    inseam_pct = find_inseam(avg_tensor, mp_pose)
 
-    return find_height(avg_tensor, mp_pose)
+    data = {
+        "height": height,
+        "sleeve": sleeve,
+        "inseam": inseam
+    }
 
+    # Convert the dictionary to JSON
+    json_data = json.dumps(data)
 
-@app.route('/webcam')
+    # Save the JSON data to a file
+    with open("measurements.json", "w") as file:
+        file.write(json_data)
+
+    return 0
+
+@app.route('/webcam', methods=['POST'])
 def webcam_display():
+    data = request.data
+    print(data)
+
     mp_drawing = mp.solutions.drawing_utils
     mp_pose = mp.solutions.pose
-    # height = webcam(mp_drawing, mp_pose)
     return Response(webcam(mp_drawing, mp_pose), mimetype='multipart/x-mixed-replace;boundary=frame')
-    # return Response(str(height), mimetype='text/plain')
-
 
 
 if __name__ == '__main__':
