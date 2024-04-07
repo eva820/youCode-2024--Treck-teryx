@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import { BodyScan } from './BodyScan';
+import { BodyScan } from './BodyScan.1';
 
 function Header() {
   return (
@@ -78,7 +78,7 @@ const ChecklistSurvey = () => {
           </>
         </div>
         ) : (
-          <div className="video">
+          <div>
             <BodyScan />
           </div>
         )}
