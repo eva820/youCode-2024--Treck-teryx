@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react';
 import './App.css';
-import Stores from './Stores';
+// import Stores from './Stores';
 import RecommendProduct from './RecommendProduct';
 import axios from 'axios';
 import ProductsComponent from './products';
@@ -12,16 +12,6 @@ function Header() {
     </header>
   )
 }
-
-// const questions = [
-//   { text: 'Activity Type', options: ['Hiking', 'Climbing', 'Skiing'] },
-//   { text: 'Intensity', options: ['Light', 'Moderate', 'Vigorous'] },
-//   { text: 'Product Type', options: ['Jackets', 'Pants', 'Shirts & Tops', 'Shorts', 'Bags', 'Shoes', 'Gloves', 'Hats', 'Socks', 'Climbing Gear'] },
-//   { text: 'Clothing Preferences', options: ['Womens', 'Mens/Unisex'] },
-//   { text: 'Colour Preferences', options: ['Blue', 'Black','Green', 'Natural', 'Brown', 'Grey', 'Red', 'Orange', 'Yellow', 'Purple', 'Multi', 'Pink']},
-//   { text: 'Size', options: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']},
-//   // Add more questions as needed
-// ];
 
 const questions = [
   { 
@@ -65,6 +55,8 @@ const questions = [
       // Potentially more options could be added here
     ]
   },
+  // {text: 'Size', options: [{text: 'XS'},{text: 'S'}, {text: 'M'}, {text: 'L'}, {text: 'XL'}]},
+  
   { 
     text: 'Color Preferences', 
     options: [
@@ -81,22 +73,13 @@ const questions = [
   // Continue with other preferences as needed
 ];
 
-
-
-//  const [userSelections, setUserSelections] = useState({
-//     gender: 'men',
-//     categoryUrl: '/ca/en/c/mens/shell-jackets',
-//     productType: 'shell-jackets',
-//     baseColor: '', // Initialize baseColor in the state
-//     size: '', // Initialize size in the state, 
-//     activity: '', 
-//   });
-
 const ChecklistSurvey = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [surveyCompleted, setSurveyCompleted] = useState(false);
   const [initiateBodyScan, setInitiateBodyScan] = useState(false);
+  // const [filteredProducts, setFilteredProducts] = useState([]); 
+  
 
   const handleOptionSelect = (option) => {
     if (selectedOptions.includes(option)) {
@@ -113,15 +96,17 @@ const ChecklistSurvey = () => {
       // Handle survey completion logic (e.g., submit the survey)
       console.log('Survey completed:', selectedOptions);
       setSurveyCompleted(true);
+      setSelectedOptions(selectedOptions);
+ 
     }
   };
 
-  const [surveyResults, setSurveyResults] = useState({});
+  // const [surveyResults, setSurveyResults] = useState({});
 
-  const handleSurveyCompletion = (results) => {
-    console.log('Survey Results:', results);
-    setSurveyResults(results); // Store survey results in state
-  };
+  // const handleSurveyCompletion = (results) => {
+  //   console.log('Survey Results:', results);
+  //   setSurveyResults(results); // Store survey results in state
+  // };
 
 
   function BodyScan() {
@@ -197,49 +182,7 @@ const ChecklistSurvey = () => {
     );
   
   };  
-
-  // const runSurvey = () => {
-  //   return (
-  //   <div>
-  //     {!initiateBodyScan ?
-  //       (<div className="survey">
-  //         <>
-  //           <h3 className="survey-title">{questions[currentQuestion].text}</h3>
-  //           <form>
-  //            {questions[currentQuestion].options.map((option, index) => (
-  //               <div className="options" key={index}>
-  //                 <label>
-  //                   <input
-  //                     type="checkbox"
-  //                     value={option.value} // Use option.value for the value attribute
-  //                     checked={selectedOptions.includes(option)}
-  //                     onChange={() => handleOptionSelect(option)}
-  //                   />
-  //                   {option}
-  //                 </label>
-  //               </div>
-  //             ))}
-  //             <div className="button-container">
-  //               {currentQuestion === questions.length - 2 ? (
-  //                 <>
-  //                   <button className="button" type="button" onClick={() => { setInitiateBodyScan(true) }}>Scan For Size!</button>
-  //                   <button className="button" type="button" onClick={handleNextQuestion}>Input Size</button>
-  //                 </>
-  //               ) : (
-  //                 <button className="button" type="button" onClick={handleNextQuestion}>Next</button>
-  //               )}
-  //             </div>
-  //           </form>
-  //         </>
-  //       </div>
-  //       ) : (
-  //         <div>
-  //           <BodyScan />
-  //         </div>
-  //       )}
-  //   </div>
-  //   )
-  // }
+  
   const runSurvey = () => {
     return (
       <div>
@@ -262,7 +205,7 @@ const ChecklistSurvey = () => {
                   </div>
                 ))}
                 <div className="button-container">
-                  {currentQuestion === questions.length - 2 ? (
+                  {currentQuestion === questions.length - 1 ? (
                     <>
                       <button className="button" type="button" onClick={() => setInitiateBodyScan(true)}>Scan For Size!</button>
                       <button className="button" type="button" onClick={handleNextQuestion}>Input Size</button>
@@ -284,7 +227,9 @@ const ChecklistSurvey = () => {
 
   return (
     <div>
-      {!surveyCompleted ? runSurvey() : <RecommendProduct />}
+      
+       {!surveyCompleted ? runSurvey(): <ProductsComponent selection={selectedOptions}/>}
+
     </div>
   );
 };
@@ -318,21 +263,25 @@ const Landing = () => {
   );
 };
 
+
+  
+
 function App() {
+  
+  // const [filteredProductsInApp, setFilteredProductsInApp] = useState([]);
+
   const [surveyResults, setSurveyResults] = useState({});
+  const [products, setProducts] = useState([]);
+
+  const handleFilteredProducts = (filteredProducts) => {
+    setProducts(filteredProducts);
+  };
   
   const handleSurveyCompletion = (results) => {
     setSurveyResults(results);
   };
   
-  // return (
-  //   <div className="background">
-  //     <div className="App">
-  //       <Header />
-  //       <Landing />
-  //     </div>
-  //   </div>
-  // )
+
   return (
     <div className="background">
       <div className="App">
@@ -340,7 +289,10 @@ function App() {
         {Object.keys(surveyResults).length === 0 ? (
           <Landing onSurveyComplete={handleSurveyCompletion} />
         ) : (
-          <ProductsComponent surveyResults={surveyResults} />
+          null
+          // onFilteredProduct = handleFilteredProducts
+          // <ProductsComponent surveyResults={surveyResults} onFilteredProducts={handleFilteredProducts} />
+          // <ProductsComponent onFilteredProducts={handleFilteredProducts} />
         )}
       </div>
     </div>

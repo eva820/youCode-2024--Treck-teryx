@@ -1,9 +1,28 @@
 import React, { useState } from "react";
 import Stores from "./Stores";
 
-const RecommendProduct = () => {
+const RecommendProduct = ({ products }) => {
+  console.log("PRODUCTS: ", products); // Add this line to log the products prop
+
   
   const [showNearestStore, setShowNearestStore] = useState(false);
+
+    // Use products prop in your component, for example, to render a list of recommended products
+    const renderProductDetails = () => {
+      return products.map((product, index) => (
+        <div key={index} className="product-detail">
+          <h3>{product.title}</h3>
+          <img src={product.displayImage} alt={product.title} />
+          <p>Based on your preferences and your personalized measurements, we have determined {product.title} to be the best for you!</p>
+          <div className="button-container">
+            <button className="button" type="button">Buy Online</button>
+            <button className="button" type="button" onClick={() => setShowNearestStore(true)}>Find Nearest Store</button>
+          </div>
+        </div>
+      ));
+    };
+    
+  
 
   return (
     !showNearestStore ? (
@@ -62,7 +81,7 @@ const RecommendProduct = () => {
         <div className="middle">
           <h3 className="survey-title">Based on your preferences...</h3>
           <img className="placeholder" src="https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg" alt="placeholder" />
-          <p>Based on your preferences and your personalized measurements, we have determined "product_name" to be the best for you!</p>
+          <p>Based on your preferences and your personalized measurements, we have determined 'title' to be the best for you!</p>
           <div className="button-container">
             <button className="button" type="button">Buy Online</button>
             <button className="button" type="button" onClick={() => {setShowNearestStore(true)}}>Find Nearest Store</button>
@@ -73,10 +92,11 @@ const RecommendProduct = () => {
           <div className="grid">
             <div className="grid-item">
               <p>
-                <h4>Product 1</h4>
+                {/* <h4>Product 1</h4>
                 <img src="https://images.arcteryx.com/details/1350x1710/F23-X000007341-Beta-Insulated-Jacket-Black-Front-View.jpg"/>
                 <br></br>
-                bla bla bla bla bla bla bla bla bla bla bla bla
+                bla bla bla bla bla bla bla bla bla bla bla bla */}
+                 {renderProductDetails()} {/* Call the function to render products */}
               </p>
             </div>
             <div className="grid-item">
