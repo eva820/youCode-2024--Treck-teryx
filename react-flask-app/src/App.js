@@ -4,6 +4,7 @@ import './App.css';
 import ProductsComponent from './products';
 import Stores from './Stores';
 import RecommendProduct from './RecommendProduct';
+import axios from 'axios';
 
 
 function Header() {
@@ -67,6 +68,11 @@ const ChecklistSurvey = () => {
     };
 
     const beginScan = () => {
+      const height_data = {
+        height: inputValue
+      }
+      axios.post('http://127.0.0.1:8080/height', height_data)
+
       startVideo();
       setVideoStart(true);
       console.log('Submitted value:', inputValue);
@@ -95,12 +101,20 @@ const ChecklistSurvey = () => {
         ) : (
           <>
             <div className="video">
-              <div>
-                <img src='http://127.0.0.1:8080/webcam' style={{ maxWidth: '100%' }}></img>
-              </div>
-              <div className="button-container">
-                <button className="button" onClick={() => { setSurveyCompleted(true) }}>Finish</button>
-              </div>
+              {surveyCompleted ? (
+                <div>
+                  <p>Scan completed!</p>
+                </div>
+              ) : (
+                <>
+                  <div>
+                    <img src='http://127.0.0.1:8080/webcam' style={{ maxWidth: '100%' }}></img>
+                  </div>
+                  <div className="button-container">
+                    <button className="button" onClick={() => { setSurveyCompleted(true) }}>Finish</button>
+                  </div>
+                </>
+              )}
             </div>
           </>
         )
@@ -192,9 +206,9 @@ function App() {
   return (
     <div className="background">
       <div className="App">
-        {/* <Header />
-        <Landing /> */}
-        <ProductsComponent/> 
+        <Header />
+        <Landing />
+        {/* <ProductsComponent /> */}
       </div>
     </div>
   )
