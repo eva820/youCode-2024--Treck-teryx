@@ -19,12 +19,12 @@ def body_in_frame(landmarks, mp_pose):
     print('got here')
 
     # heel out of frame
-    if left > 0.95 or right > 0.95:
+    if left > 0.9 or right > 0.9:
         return False
     # heel wayy to in frame
     if left < 0 or right < 0 or nose < 0:
         return False
-    if nose > 0.15:
+    if nose > 0.2:
         return False
 
     return True
@@ -165,9 +165,9 @@ def webcam(mp_drawing, mp_pose):
     inseam_pct = find_inseam(avg_tensor, mp_pose)
 
     data = {
-        "height": height,
-        "sleeve": sleeve,
-        "inseam": inseam
+        "height": height_pct,
+        "sleeve": sleeve_pct,
+        "inseam": inseam_pct
     }
 
     # Convert the dictionary to JSON
@@ -177,9 +177,12 @@ def webcam(mp_drawing, mp_pose):
     with open("measurements.json", "w") as file:
         file.write(json_data)
 
-    return 0
+    #return 0
+    yield b'--frame\r\nContent-Type: image/jpeg\r\n\r\nFINISHED\r\n'
+    #yield b'--frame\r\nContent-Type: text/plain\r\n\r\nPerfect, stay in this position\r\n'
 
-@app.route('/webcam', methods=['POST'])
+#@app.route('/webcam', methods=['POST'])
+@app.route('/webcam')
 def webcam_display():
     data = request.data
     print(data)
