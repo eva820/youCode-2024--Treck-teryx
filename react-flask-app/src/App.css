@@ -26,17 +26,32 @@ body {
 .survey {
   display: block;
   margin: auto;
-  margin-top: 150px;
+  margin-top: 100px;
   border: 1px solid #000000;
-  border-radius :10px;
+  border-radius :25px;
   padding: 20px;
   background-color: white;
   width: 250px;
+  box-shadow: 1px 2px 5px 0px grey;
+  padding-bottom: 30px;
 }
 
 .survey-title {
   margin-bottom: 20px;
   text-align: center;
+}
+
+.video {
+  display: block;
+  margin: auto;
+  margin-top: 100px;
+  border: 1px solid #000000;
+  border-radius :25px;
+  padding: 20px;
+  background-color: white;
+  width: 500px;
+  height: 430px;
+  box-shadow: 1px 2px 5px 0px grey;
 }
 
 .button {
@@ -46,6 +61,16 @@ body {
   border-radius: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  cursor: pointer;
+  transition: box-shadow, 0.3s;
+}
+
+.button-container {
+  display: flex;
+}
+
+.button:hover {
+  box-shadow: 1px 2px 2px 0px grey;
 }
 
 .options{

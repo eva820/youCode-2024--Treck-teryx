@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+import { BodyScan } from './BodyScan';
 
 function Header() {
   return (
@@ -10,14 +11,20 @@ function Header() {
 }
 
 const questions = [
-  { text: 'Question 1', options: ['Option 1', 'Option 2', 'Option 3'] },
-  { text: 'Question 2', options: ['Option A', 'Option B', 'Option C'] },
+  { text: 'Activity Type', options: ['Hiking', 'Climbing', 'Skiing'] },
+  { text: 'Intensity', options: ['Light', 'Moderate', 'Vigorous'] },
+  { text: 'Product Type', options: ['Jackets', 'Pants', 'Shirts & Tops', 'Shorts', 'Bags', 'Shoes', 'Gloves', 'Hats', 'Socks', 'Climbing Gear'] },
+  { text: 'Clothing Preferences', options: ['Womens', 'Mens/Unisex'] },
+  { text: 'Colour Preferences', options: ['Blue', 'Black','Green', 'Natural', 'Brown', 'Grey', 'Red', 'Orange', 'Yellow', 'Purple', 'Multi', 'Pink']},
+  { text: 'Size', options: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']},
   // Add more questions as needed
 ];
 
 const ChecklistSurvey = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [surveyCompleted, setSurveyCompleted] = useState(false);
+  const [initiateBodyScan, setInitiateBodyScan] = useState(false);
 
   const handleOptionSelect = (option) => {
     if (selectedOptions.includes(option)) {
@@ -33,29 +40,58 @@ const ChecklistSurvey = () => {
     } else {
       // Handle survey completion logic (e.g., submit the survey)
       console.log('Survey completed:', selectedOptions);
+      setSurveyCompleted(true);
     }
   };
 
-  return (
-    <div className="survey">
-      <h2 className="survey-title">{questions[currentQuestion].text}</h2>
-      <form>
-        {questions[currentQuestion].options.map((option, index) => (
-          <div className="options" key={index}>
-            <label>
-              <input
-                type="checkbox"
-                checked={selectedOptions.includes(option)}
-                onChange={() => handleOptionSelect(option)}
-              />
-              {option}
-            </label>
+  const runSurvey = () => {
+    return (
+    <div>
+      {!initiateBodyScan ?
+        (<div className="survey">
+          <>
+            <h3 className="survey-title">{questions[currentQuestion].text}</h3>
+            <form>
+              {questions[currentQuestion].options.map((option, index) => (
+                <div className="options" key={index}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={selectedOptions.includes(option)}
+                      onChange={() => handleOptionSelect(option)}
+                    />
+                    {option}
+                  </label>
+                </div>
+              ))}
+              <div className="button-container">
+                {currentQuestion === questions.length - 2 ? (
+                  <>
+                    <button className="button" type="button" onClick={() => { setInitiateBodyScan(true) }}>Scan For Size!</button>
+                    <button className="button" type="button" onClick={handleNextQuestion}>Input Size</button>
+                  </>
+                ) : (
+                  <button className="button" type="button" onClick={handleNextQuestion}>Next</button>
+                )}
+              </div>
+            </form>
+          </>
+        </div>
+        ) : (
+          <div className="video">
+            <BodyScan />
           </div>
-        ))}
-        <button className="button" type="button" onClick={handleNextQuestion}>
-          {currentQuestion === questions.length - 1 ? 'Finish' : 'Next'}
-        </button>
-      </form>
+        )}
+    </div>
+    )
+  }
+
+  return (
+    <div>
+      {!surveyCompleted ? runSurvey()
+      : (
+        <div>Product Recommendation</div>
+      )}
     </div>
   );
 };
