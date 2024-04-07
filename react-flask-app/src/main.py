@@ -109,7 +109,7 @@ def askGPT(height, hpct, spct, ipct):
         {
         "role": "user",
         "content": f"height = {height}, height_ratio = {hpct}, neck_to_wrist = {spct}, waist_to_foot = {ipct}"
-        
+        },
     ],
     temperature=1,
     max_tokens=256,
