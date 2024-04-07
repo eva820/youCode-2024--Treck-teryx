@@ -1,12 +1,9 @@
 {
   "dependencies": {
-<<<<<<< HEAD
     "@vis.gl/react-google-maps": "^0.8.3",
-    "google-map-react": "^2.2.1"
-=======
+    "google-map-react": "^2.2.1",
     "corepack": "^0.26.0",
     "pnpm": "^8.15.6",
     "yarn": "^1.22.22"
->>>>>>> 6775d24a3cc7fda4e69470507d79ac4bf8ec5938
   }
 }
