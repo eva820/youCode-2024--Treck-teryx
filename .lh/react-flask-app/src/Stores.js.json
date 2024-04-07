@@ -1,0 +1,30 @@
+{
+    "sourceFile": "react-flask-app/src/Stores.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1712457132968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1712459164838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,15 @@\n+import { promises as fs } from 'fs';\n+\n+async function readJsonFile(filePath) {\n+  try {\n+    const data = await fs.readFile(filePath, 'utf8');\n+    const json = JSON.parse(data);\n+    console.log(json);\n+  } catch (err) {\n+    console.error(err);\n+  }\n+}\n+\n+// Replace 'path/to/your/file.json' with the actual file path\n+const filePath = 'react-flask-app/src/StoreData.json';\n+readJsonFile(filePath);\n"
+                },
+                {
+                    "date": 1712459173880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,6 +10,6 @@\n   }\n }\n \n // Replace 'path/to/your/file.json' with the actual file path\n-const filePath = 'react-flask-app/src/StoreData.json';\n+const filePath = './StoreData.json';\n readJsonFile(filePath);\n"
+                },
+                {
+                    "date": 1712459419929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n import { promises as fs } from 'fs';\n \n async function readJsonFile(filePath) {\n+   \n   try {\n     const data = await fs.readFile(filePath, 'utf8');\n     const json = JSON.parse(data);\n+    console.log(json)\n     console.log(json);\n   } catch (err) {\n     console.error(err);\n   }\n@@ -12,4 +14,5 @@\n \n // Replace 'path/to/your/file.json' with the actual file path\n const filePath = './StoreData.json';\n readJsonFile(filePath);\n+\n"
+                }
+            ],
+            "date": 1712457132968,
+            "name": "Commit-0",
+            "content": ""
+        }
+    ]
+}

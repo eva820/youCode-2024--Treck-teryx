@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 14,
             "patches": [
                 {
                     "date": 1712444203059,
@@ -56,6 +56,14 @@
                 {
                     "date": 1712455346953,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,10 @@\n         <img src={logo} className=\"App-logo\" alt=\"logo\" />\n         <MapComponent/>\n \n      \n-        \n+          {/* Edit <code>src/App.js</code> and save to reload.\n+           */}\n            {/* <ProductsComponent>\n \n            </ProductsComponent> */}\n            \n"
+                },
+                {
+                    "date": 1712457092547,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,18 +8,18 @@\n   return (\n     <div className=\"App\">\n       <header className=\"App-header\">\n         <img src={logo} className=\"App-logo\" alt=\"logo\" />\n-        <MapComponent/>\n+        {/* <MapComponent/> */}\n \n-     \n+        {/* <p> */}\n           {/* Edit <code>src/App.js</code> and save to reload.\n            */}\n            {/* <ProductsComponent>\n \n            </ProductsComponent> */}\n            \n-      \n+        {/* </p> */}\n         <a\n           className=\"App-link\"\n           href=\"https://reactjs.org\"\n           target=\"_blank\"\n"
+                },
+                {
+                    "date": 1712459499781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,35 @@\n+import logo from './logo.svg';\n+import './App.css';\n+// import MapComponent from './TrailRec'\n+\n+\n+\n+function App() {\n+  return (\n+    <div className=\"App\">\n+      <header className=\"App-header\">\n+        <img src={logo} className=\"App-logo\" alt=\"logo\" />\n+        {/* <MapComponent/> */}\n+\n+        {/* <p> */}\n+          {/* Edit <code>src/App.js</code> and save to reload.\n+           */}\n+           {/* <ProductsComponent>\n+\n+           </ProductsComponent> */}\n+           \n+        {/* </p> */}\n+        <a\n+          className=\"App-link\"\n+          href=\"https://reactjs.org\"\n+          target=\"_blank\"\n+          rel=\"noopener noreferrer\"\n+        >\n+          Learn React\n+        </a>\n+      </header>\n+    </div>\n+  );\n+}\n+\n+export default App;\n"
                 }
             ],
             "date": 1712444203059,
