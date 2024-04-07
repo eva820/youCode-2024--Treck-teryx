@@ -1,4 +1,4 @@
-from flask import Flask, Response, request
+from flask import Flask, Response, request, send_file
 import cv2
 import base64
 import json
@@ -187,6 +187,10 @@ def webcam_display():
     mp_drawing = mp.solutions.drawing_utils
     mp_pose = mp.solutions.pose
     return Response(webcam(mp_drawing, mp_pose), mimetype='multipart/x-mixed-replace;boundary=frame')
+
+@app.route('/store-data')
+def get_json_data():
+	return send_file('sliced-store-data.json')
 
 
 if __name__ == '__main__':

@@ -1,5 +1,7 @@
 import React, {useState, useRef} from 'react';
 import './App.css';
+import { BodyScan } from './BodyScan';
+import Stores from './Stores';
 import { RecommendProduct } from './recommendProduct';
 
 function Header() {
@@ -189,6 +191,9 @@ function App() {
       <div className="App">
         <Header />
         <Landing />
+		<div>
+		  <Stores></Stores>
+		</div>
       </div>
     </div>
   )
