@@ -3,12 +3,8 @@ import './App.css';
 // import { BodyScan } from './BodyScan';
 import ProductsComponent from './products';
 import Stores from './Stores';
-<<<<<<< HEAD
-import { RecommendProduct } from './RecommendProduct';
-=======
 import RecommendProduct from './RecommendProduct';
 
->>>>>>> ea97feb71eca03ee7dcb064125bcedb883ca3ec4
 
 function Header() {
   return (
