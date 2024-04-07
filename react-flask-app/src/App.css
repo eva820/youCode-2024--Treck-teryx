@@ -137,14 +137,19 @@ body {
 .product {
   display: block;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 50px;
   border: 1px solid var(--dark-green);
   border-radius :25px;
   padding: 20px;
   background-color: white;
-  width: 250px;
+  width: 300px;
   box-shadow: 1px 2px 5px 0px var(--dark-green);
   padding-bottom: 30px;
+}
+
+.placeholder {
+  width: fill-available;
+  height: fill-available;
 }
 
 .input-container {
