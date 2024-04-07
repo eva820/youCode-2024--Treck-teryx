@@ -35,7 +35,10 @@ const ProductsComponent = () => {
         fl: 'analytics_name,collection,colour_images_map,colour_images_map_ca,description,discount_price_ca,gender,hover_image,is_new,is_pro,is_revised,price_ca,pid,review_count,rating,slug,title,thumb_image',
         efq: `genders:("${userSelections.gender}")`, // Dynamic gender value
         _br_uid_2: 'uid=8986126272758:v=15.0:ts=1709256759599:hc=469',
-        ref_url: `https://arcteryx.com${userSelections.categoryUrl}`,
+        // ref_url: `https://arcteryx.com${userSelections.categoryUrl}`,
+        // ref_url: `ref_url=https%3A%2F%2Farcteryx.com%2Fca%2Fen`,
+        ref_url: `https://arcteryx.com/ca/en`,
+
         url: `https://arcteryx.com${userSelections.categoryUrl}`, //ACTUAL URL TO LIST OF PRODUCTS 
         request_id: '5483043020827',
         rows: '200',
