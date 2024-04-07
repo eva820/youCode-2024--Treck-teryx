@@ -4,6 +4,11 @@ body {
   overflow: hidden;
 }
 
+:root {
+  --header-color: #529E19; /* Define a color variable */
+  --text-size: 30px
+}
+
 .App {
   height: 100vh;
   background-size: cover;
@@ -12,7 +17,7 @@ body {
 }
 
 .App-header {
-  background-color: #529E19;
+  background-color: var(--header-color);
   padding: 0px;
   display: flex;
   flex-direction: column;
@@ -21,6 +26,36 @@ body {
   font-size: 20px;
   font-weight: bolder;
   color: white;
+}
+
+/* Landing section styles */
+.landing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center; /* Center text horizontally */
+  width: 80%; /* Set width to 80% of the viewport width */
+  max-width: 1000px; /* Limit maximum width to 600px */
+  height: auto; /* Let the height adjust based on content */
+  padding: 0px; /* Add padding for better spacing */
+  margin: 0px;
+  box-sizing: border-box; /* Include padding and border in the total width */
+}
+.landing h1 {
+  font-size: 80px;
+  margin-bottom: 40px; /* Spacing between header and text */
+}
+.landing p {
+  font-size: var(--text-size);
+  margin-bottom: 30px; /* Spacing between text and button */
+}
+.landing button {
+  display: block;
+  margin: auto;
+  border-radius: 100px;
+  padding: 20px 50px;
+  font-size: var(--text-size);
 }
 
 .survey {
@@ -44,8 +79,7 @@ body {
   margin: auto;
   margin-top: 20px;
   border-radius: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px;
 }
 
 .options{

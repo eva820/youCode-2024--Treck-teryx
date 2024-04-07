@@ -12,6 +12,7 @@ function Header() {
 const questions = [
   { text: 'Question 1', options: ['Option 1', 'Option 2', 'Option 3'] },
   { text: 'Question 2', options: ['Option A', 'Option B', 'Option C'] },
+  { text: 'Question 3', options: ['Option i', 'Option ii', 'Option iii'] },
   // Add more questions as needed
 ];
 
@@ -60,11 +61,40 @@ const ChecklistSurvey = () => {
   );
 };
 
+const Landing = () => {
+  // State to control whether to display the Landing component or ChecklistSurvey component
+  const [showLanding, setShowLanding] = useState(true); // shows landing by defeault
+
+  // Function to toggle the display of the Landing component vs ChecklistSurvey component
+  const toggleLanding = () => {
+      setShowLanding(!showLanding); // toggles between true and false
+  };
+
+  return (
+      <div>
+          {/* Conditional rendering based on the showLanding state */}
+          {showLanding ? (
+              <div className="landing">
+                  {/* Landing component */}
+                  <h1>Welcome to 🦄🦄🦄!</h1>
+                  <p>Click the button below to start.</p>
+                  <button className="button" type="button" onClick={toggleLanding}>OPEN SURVEY</button>
+                  {/* Add any other content of Landing component here */}
+              </div>
+          ) : ( // either show the ChecklistSurvey {v} or the landing page {^} based on showLanding boolean value
+              <ChecklistSurvey />
+          )}
+      </div>
+  );
+};
+
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <ChecklistSurvey />
+    <div className="element">
+      <div className="App">
+        <Header />
+        <Landing />
+      </div>
     </div>
   )
 }
