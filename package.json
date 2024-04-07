@@ -1,8 +1,9 @@
 {
   "dependencies": {
     "@vis.gl/react-google-maps": "^0.8.3",
-    "google-map-react": "^2.2.1",
+    "axios": "^1.6.8",
     "corepack": "^0.26.0",
+    "google-map-react": "^2.2.1",
     "pnpm": "^8.15.6",
     "yarn": "^1.22.22"
   }
