@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
-import { BodyScan } from './BodyScan.1';
+import { BodyScan } from './BodyScan';
+import Stores from './Stores';
 
 function Header() {
   return (
@@ -133,6 +134,9 @@ function App() {
       <div className="App">
         <Header />
         <Landing />
+		<div>
+		  <Stores></Stores>
+		</div>
       </div>
     </div>
   )
