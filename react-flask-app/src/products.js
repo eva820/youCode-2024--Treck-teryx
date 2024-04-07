@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 const ProductsComponent = () => {
   const [products, setProducts] = useState([]);
-  const [gender, setGender] = useState('men');
-  const [productType, setProductType] = useState('shell-jackets');
-  const [baseColor, setBaseColor] = useState('');
-  const [size, setSize] = useState(''); // New state for size
+  // const [gender, setGender] = useState('men');
+  // const [productType, setProductType] = useState('shell-jackets');
+  // const [baseColor, setBaseColor] = useState('');
+  // const [size, setSize] = useState(''); // New state for size
   const [filteredProducts, setFilteredProducts] = useState([]);
 
 
@@ -103,23 +103,34 @@ const ProductsComponent = () => {
 
   useEffect(() => {
     const filtered = products.map(product => {
-      // Assuming colour_images_map_ca is an array of strings formatted as "ColorName:::Description:::Boolean:::ImageUrl:::AnotherImageUrl:::Tag"
-      // First, check if there's a color match
-      const colorMatchEntry = product.colour_images_map_ca?.find(entry =>
-        entry.toLowerCase().startsWith(userSelections.baseColor.toLowerCase())
-      );
+      let matchedImageUrl = ''; // Initialize as empty to signify no image by default
   
-      // Extract the image URL from the matched entry, if any
-      const matchedImageUrl = colorMatchEntry ? colorMatchEntry.split(':::')[3] : product.hover_image; // Use the fourth part for the image URL, fallback to hover_image
+      // Handle the 'any' case to show all products without specific color matching
+      if (userSelections.baseColor.toLowerCase() === 'any') {
+        matchedImageUrl = product.hover_image; // Use hover_image for all products
+      } else {
+        // Attempt to find a color match only for a specific color selection
+        const colorMatchEntry = product.colour_images_map_ca?.find(entry =>
+          entry.toLowerCase().startsWith(userSelections.baseColor.toLowerCase() + ":::")
+        );
+        // Use the matched color image if found; otherwise, leave matchedImageUrl empty
+        if (colorMatchEntry) {
+          matchedImageUrl = colorMatchEntry.split(':::')[3];
+        }
+      }
   
+      // Return product with either the matched image, hover image for 'any', or empty
       return {
         ...product,
-        displayImage: matchedImageUrl // Add a new property to hold the matched image URL
+        displayImage: matchedImageUrl
       };
     });
   
     setFilteredProducts(filtered);
   }, [products, userSelections.baseColor]);
+  
+  
+  
   
   
 
@@ -162,7 +173,7 @@ const ProductsComponent = () => {
         <label>
           Color:
           <select value={userSelections.baseColor} onChange={handleColorChange}>
-            <option value=" ">Any</option>
+            <option value="any">Any</option>
             <option value="black">Black</option>
             <option value="blue">Blue</option>
             <option value="red">Red</option>
