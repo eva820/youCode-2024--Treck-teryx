@@ -45,6 +45,18 @@ body {
 .landing h1 {
   font-size: 80px;
   margin-bottom: 40px; /* Spacing between header and text */
+  animation: 1.5s slide-down;
+}
+@keyframes slide-down {
+  0% {
+    margin-top: -30%;
+  }
+  50% {
+    margin-top: 10%; /* Move halfway down */
+  }
+  110% {
+    margin-top: 0%; /* Final position */
+  }
 }
 .landing p {
   font-size: var(--text-size);
