@@ -57,6 +57,9 @@ body {
   padding: 20px 50px;
   font-size: var(--text-size);
 }
+.landing button:hover {
+  box-shadow: 3px 5px 2px 0px #294b5e; /* right offset : bottom offset : glow : shadow expand*/
+}
 
 .background {
   background-image: url('background.png');
