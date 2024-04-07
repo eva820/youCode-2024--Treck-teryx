@@ -1,0 +1,26 @@
+{
+    "sourceFile": "react-flask-app/src/data.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1712436356588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1712436380001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import requests\n \n # Function to fetch posts\n def fetch_posts():\n-    response = requests.get('https://jsonplaceholder.typicode.com/posts')\n+    response = requests.get('https://core.dxpapi.com/api/v1/core/?account_id=7358&domain_key=arcteryx&fl=analytics_name%2Ccollection%2Ccolour_images_map%2Ccolour_images_map_ca%2Cdescription%2Cdiscount_price_ca%2Cgender%2Chover_image%2Cis_new%2Cis_pro%2Cis_revised%2Cprice_ca%2Cpid%2Creview_count%2Crating%2Cslug%2Ctitle%2Cthumb_image&efq=genders%3A%28%22men%22%29&_br_uid_2=uid%3D8986126272758%3Av%3D15.0%3Ats%3D1709256759599%3Ahc%3D469&ref_url=https%3A%2F%2Farcteryx.com%2Fca%2Fen&url=https%3A%2F%2Farcteryx.com%2Fca%2Fen%2Fc%2Fmens%2Fshell-jackets&request_id=5483043020827&rows=200&start=0&view_id=ca&request_type=search&search_type=category&q=shell-jackets-men')\n     if response.status_code == 200:\n         return response.json()\n     else:\n         print(\"Failed to fetch posts\")\n"
+                },
+                {
+                    "date": 1712436518001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,15 @@\n \n \n import requests\n \n+activity = ['hiking, swimming, running'] \n+trails = []\n+size = ['men', 'women']  \n+gender = ['xs', 's', 'm', 'l', 'xl']\n+\n+ \n+\n # Function to fetch posts\n def fetch_posts():\n     response = requests.get('https://core.dxpapi.com/api/v1/core/?account_id=7358&domain_key=arcteryx&fl=analytics_name%2Ccollection%2Ccolour_images_map%2Ccolour_images_map_ca%2Cdescription%2Cdiscount_price_ca%2Cgender%2Chover_image%2Cis_new%2Cis_pro%2Cis_revised%2Cprice_ca%2Cpid%2Creview_count%2Crating%2Cslug%2Ctitle%2Cthumb_image&efq=genders%3A%28%22men%22%29&_br_uid_2=uid%3D8986126272758%3Av%3D15.0%3Ats%3D1709256759599%3Ahc%3D469&ref_url=https%3A%2F%2Farcteryx.com%2Fca%2Fen&url=https%3A%2F%2Farcteryx.com%2Fca%2Fen%2Fc%2Fmens%2Fshell-jackets&request_id=5483043020827&rows=200&start=0&view_id=ca&request_type=search&search_type=category&q=shell-jackets-men')\n     if response.status_code == 200:\n"
+                }
+            ],
+            "date": 1712436356588,
+            "name": "Commit-0",
+            "content": "\n\nimport requests\n\n# Function to fetch posts\ndef fetch_posts():\n    response = requests.get('https://jsonplaceholder.typicode.com/posts')\n    if response.status_code == 200:\n        return response.json()\n    else:\n        print(\"Failed to fetch posts\")\n        return []\n\n# Function to search for a keyword in post titles\ndef search_posts(posts, keyword):\n    matching_posts = [post for post in posts if keyword.lower() in post['title'].lower()]\n    return matching_posts\n\n# Main function\ndef main():\n    keyword = input(\"Enter a keyword to search for in post titles: \")\n    posts = fetch_posts()\n    matching_posts = search_posts(posts, keyword)\n    \n    if matching_posts:\n        print(f\"Found {len(matching_posts)} posts with the keyword '{keyword}':\")\n        for post in matching_posts:\n            print(f\"- {post['title']}\")\n    else:\n        print(f\"No posts found with the keyword '{keyword}'.\")\n\nif __name__ == \"__main__\":\n    main()\n"
+        }
+    ]
+}

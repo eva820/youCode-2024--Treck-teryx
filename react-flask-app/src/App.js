@@ -91,6 +91,8 @@ const ChecklistSurvey = () => {
       {!surveyCompleted ? runSurvey()
       : (
         <div>Product Recommendation</div>
+        
+
       )}
     </div>
   );
@@ -115,7 +117,7 @@ const Landing = () => {
                   <p>A product recommendation service for individuals of all experience levels seeking outdoor adventure! 
                     <br></br>
                     Use button below to receive recommendations tailored to your needs!</p>
-                  <button className="button" type="button" onClick={toggleLanding}>What are you looking for today?</button>
+                  <button className="button" type="button" onClick={toggleLanding}>Begin Survey</button>
                   {/* Add any other content of Landing component here */}
               </div>
           ) : ( // either show the ChecklistSurvey {v} or the landing page {^} based on showLanding boolean value
