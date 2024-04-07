@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react';
 import './App.css';
-import { RecommendProduct } from './RecommendProduct';
+import { RecommendProduct } from './recommendProduct';
 
 function Header() {
   return (
