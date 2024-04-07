@@ -8,7 +8,7 @@ import ProductsComponent from './products';
 function Header() {
   return (
     <header className="App-header">
-      <p>Project Name</p>
+      <p>YouCode 2024 - Treck'teryx Official Site</p>
     </header>
   )
 }
@@ -67,6 +67,19 @@ const questions = [
       { text: 'Brown', value: 'brown' },
       { text: 'Purple', value: 'purple' },
       { text: 'Pink', value: 'pink' },
+      // Add more color preferences as needed
+    ]
+  },
+  { 
+    text: 'Size', 
+    options: [
+      { text: 'XXS', value: 'XXS' },
+      { text: 'XS', value: 'XS' },
+      { text: 'S', value: 'S' },
+      { text: 'M', value: 'M' },
+      { text: 'L', value: 'L' },
+      { text: 'XL', value: 'XL' },
+      { text: 'XXL', value: 'XXL' },
       // Add more color preferences as needed
     ]
   },
@@ -182,7 +195,49 @@ const ChecklistSurvey = () => {
     );
   
   };  
-  
+
+  // const runSurvey = () => {
+  //   return (
+  //   <div>
+  //     {!initiateBodyScan ?
+  //       (<div className="survey">
+  //         <>
+  //           <h3 className="survey-title">{questions[currentQuestion].text}</h3>
+  //           <form>
+  //            {questions[currentQuestion].options.map((option, index) => (
+  //               <div className="options" key={index}>
+  //                 <label>
+  //                   <input
+  //                     type="checkbox"
+  //                     value={option.value} // Use option.value for the value attribute
+  //                     checked={selectedOptions.includes(option)}
+  //                     onChange={() => handleOptionSelect(option)}
+  //                   />
+  //                   {option}
+  //                 </label>
+  //               </div>
+  //             ))}
+  //             <div className="button-container">
+  //               {currentQuestion === questions.length - 2 ? (
+  //                 <>
+  //                   <button className="button" type="button" onClick={() => { setInitiateBodyScan(true) }}>Scan For Size!</button>
+  //                   <button className="button" type="button" onClick={handleNextQuestion}>Input Size</button>
+  //                 </>
+  //               ) : (
+  //                 <button className="button" type="button" onClick={handleNextQuestion}>Next</button>
+  //               )}
+  //             </div>
+  //           </form>
+  //         </>
+  //       </div>
+  //       ) : (
+  //         <div>
+  //           <BodyScan />
+  //         </div>
+  //       )}
+  //   </div>
+  //   )
+  // }
   const runSurvey = () => {
     return (
       <div>
@@ -244,22 +299,22 @@ const Landing = () => {
   };
 
   return (
-      <div>
-          {/* Conditional rendering based on the showLanding state */}
-          {showLanding ? (
-              <div className="landing">
-                  {/* Landing component */}
-                  <h1>Welcome to 🦄🦄🦄!</h1>
-                  <p>A product recommendation service for individuals of all experience levels seeking outdoor adventure! 
-                    <br></br>
-                    Use button below to receive recommendations tailored to your needs!</p>
-                  <button className="button" type="button" onClick={toggleLanding}>What are you looking for today?</button>
-                  {/* Add any other content of Landing component here */}
-              </div>
-          ) : ( // either show the ChecklistSurvey {v} or the landing page {^} based on showLanding boolean value
-              <ChecklistSurvey />
-          )}
-      </div>
+    <div>
+      {/* Conditional rendering based on the showLanding state */}
+      {showLanding ? (
+        <div className="landing">
+          {/* Landing component */}
+          <h1>Welcome to Treck'teryx!</h1>
+          <p>A product recommendation service for individuals of all experience levels seeking outdoor adventure!
+            <br></br>
+            Use button below to receive recommendations tailored to your needs!</p>
+          <button className="button" type="button" onClick={toggleLanding}>What are you looking for today?</button>
+          {/* Add any other content of Landing component here */}
+        </div>
+      ) : ( // either show the ChecklistSurvey {v} or the landing page {^} based on showLanding boolean value
+        <ChecklistSurvey />
+      )}
+    </div>
   );
 };
 

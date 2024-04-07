@@ -16,22 +16,33 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/get-size', methods=['GET'])
+def get_measurements():
+    with open('measurements.json', 'r') as file:
+        measurements_data = json.load(file)
+    return jsonify(measurements_data)
+
+    
+
 def body_in_frame(landmarks, mp_pose):
     left = landmarks[mp_pose.PoseLandmark.LEFT_HEEL.value].y
     right = landmarks[mp_pose.PoseLandmark.RIGHT_HEEL.value].y
     nose = landmarks[mp_pose.PoseLandmark.NOSE.value].y
-    print('got here')
 
+    print('0')
     # heel out of frame
-    if left > 0.9 or right > 0.9:
+    if left > 0.8 or right > 0.8:
         return False
+    print('1')
     # heel wayy to in frame
     if left < 0 or right < 0 or nose < 0:
         return False
-    if nose > 0.2:
+    print('2')
+    if nose > 0.3:
         return False
-
+    
     return True
+
 
 # pair is the two landmarks we want to measure between
 def get_distance_between_two_t(avg_tensor, pair):
@@ -93,33 +104,33 @@ def find_height(avg_tensor, mp_pose):
     return math.sqrt((avg_tensor[nose][0] - avg_bottom_x)**2 + (avg_tensor[nose][1] - avg_bottom_y)**2)
 
 
-@app.route('/test-gpt')
-# def askGPT(height, hpct, spct, ipct):
-def askGPT():
-    height = 74
-    hpct = 0.7
-    spct = 0.27
-    ipct = 0.33
+def askGPT(height, hpct, spct, ipct):
+    client = OpenAI()
 
-    load_dotenv
-    api_key = os.getenv("OPENAI_API_KEY")
-    print(api_key)
-    client = OpenAI(api_key=api_key)
-
-    # Define messages to send to the API
-    messages = [
-        {"role": "system", "content": "You are tasked with providing appropriate jacket and pant sizes based on the provided measurements."},
-        {"role": "user", "content": "Height: 180 cm\nPercentage of screen covered: 60%\nPercentage of sleeve length: 70%\nPercentage of inseam: 80%"}
-    ]
-
-    # Call OpenAI API to generate completions
-    completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=messages
+    response = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {
+        "role": "system",
+        "content": "{\n  \"men_jackets\": {\n    \"XXS\": \"31\",\n    \"XS\": \"32\",\n    \"S\": \"33\",\n    \"M\": \"34\",\n    \"L\": \"35\",\n    \"XL\": \"36\",\n    \"XXL\": \"37\",\n    \"3XL\": \"37.6\"\n  },\n  \"men_pants\": {\n    \"XXS\": \"31\",\n    \"XS\": \"31\",\n    \"S\": \"31.5\",\n    \"M\": \"32\",\n    \"L\": \"32.5\",\n    \"XL\": \"33\",\n    \"XXL\": \"33\"\n  },\n  \"women_jackets\": {\n    \"XXS\": \"28.5\",\n    \"XS\": \"29.5\",\n    \"S\": \"30.5\",\n    \"M\": \"31.5\",\n    \"L\": \"32\",\n    \"XL\": \"32.5\",\n    \"XXL\": \"33.5\"\n  },\n  \"women_pants\": {\n    \"XXS\": \"30.5\",\n    \"XS\": \"31\",\n    \"S\": \"31\",\n    \"M\": \"31\",\n    \"L\": \"31.5\",\n    \"XL\": \"32\"\n  }\n}\n\n\nUse this json data. I will send you the height of a person in inches, the ratio of the distance from nose to leg, from neck to wrist (underestimation of sleeve), and from waist to foot (overestimation of inseam). In your response, only return JSON for your estimate of the men's jackets,men's pants, women's jackets, women's pants size.\n"
+        },
+        {
+        "role": "user",
+        "content": f"height = {height}, height_ratio = {hpct}, neck_to_wrist = {spct}, waist_to_foot = {ipct}"
+        },
+    ],
+    temperature=1,
+    max_tokens=256,
+    top_p=1,
+    frequency_penalty=0,
+    presence_penalty=0
     )
 
-    generated_response = completion.choices[0].message
+    generated_response = json.loads(response.choices[0].message.content)
+    with open('measurements.json', 'w') as file:
+        json.dump(generated_response, file)
     print(generated_response)
+
 
 
 
@@ -157,9 +168,10 @@ def webcam(mp_drawing, mp_pose):
                 # add landmarks to our current stuff
                 if captured_body:
                     measurements.append(landmarks)
+                    print('capturing')
                     
                     # quit when we have 3 seconds of data
-                    if time.time() - start > 3:
+                    if time.time() - start > 1:
                         quit = True
                 
             # except:
@@ -208,23 +220,8 @@ def webcam(mp_drawing, mp_pose):
     
     askGPT(height, height_pct, sleeve_pct, inseam_pct)
 
-    data = {
-        "sleeve": sleeve_pct * fact,
-        "inseam": inseam_pct * fact
-    }
-
-    # Convert the dictionary to JSON
-    json_data = json.dumps(data)
-
-    # Save the JSON data to a file
-    with open("measurements.json", "w") as file:
-        file.write(json_data)
-
-    #return 0
     yield b'--frame\r\nContent-Type: image/jpeg\r\n\r\nFINISHED\r\n'
-    #yield b'--frame\r\nContent-Type: text/plain\r\n\r\nPerfect, stay in this position\r\n'
 
-#@app.route('/webcam', methods=['POST'])
 @app.route('/webcam')
 def webcam_display():
 

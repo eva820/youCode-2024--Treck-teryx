@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Stores from "./Stores";
+import { filteredProducts } from "./products";
 
 const RecommendProduct = ({ products }) => {
   console.log("PRODUCTS: ", products); // Add this line to log the products prop
@@ -81,7 +82,7 @@ const RecommendProduct = ({ products }) => {
         <div className="middle">
           <h3 className="survey-title">Based on your preferences...</h3>
           <img className="placeholder" src="https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg" alt="placeholder" />
-          <p>Based on your preferences and your personalized measurements, we have determined 'title' to be the best for you!</p>
+          <p>Based on your preferences and your personalized measurements, we have determined "product title" to be the best for you!</p>
           <div className="button-container">
             <button className="button" type="button">Buy Online</button>
             <button className="button" type="button" onClick={() => {setShowNearestStore(true)}}>Find Nearest Store</button>

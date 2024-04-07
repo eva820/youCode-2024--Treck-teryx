@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RecommendProduct from './RecommendProduct';
+import Stores from "./Stores";
 
 const ProductsComponent = ({ selections }) => {
   const [products, setProducts] = useState([]);
@@ -39,6 +40,7 @@ const ProductsComponent = ({ selections }) => {
       <RecommendProduct products={getFilteredProducts()} />
     </div>
   );
-};
+}
+
 
 export default ProductsComponent;
