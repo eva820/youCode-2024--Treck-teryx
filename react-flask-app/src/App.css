@@ -4,6 +4,11 @@ body {
   overflow: hidden;
 }
 
+:root {
+  --header-color: #529E19; /* Define a color variable */
+  --text-size: 30px
+}
+
 .App {
   height: 100vh;
   background-size: cover;
@@ -12,7 +17,7 @@ body {
 }
 
 .App-header {
-  background-color: #529E19;
+  background-color: var(--header-color);
   padding: 0px;
   display: flex;
   flex-direction: column;
@@ -23,20 +28,65 @@ body {
   color: white;
 }
 
+/* Landing section styles */
+.landing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center; /* Center text horizontally */
+  width: 80%; /* Set width to 80% of the viewport width */
+  max-width: 1000px; /* Limit maximum width to 600px */
+  height: auto; /* Let the height adjust based on content */
+  padding: 0px; /* Add padding for better spacing */
+  margin: 0px;
+  box-sizing: border-box; /* Include padding and border in the total width */
+}
+.landing h1 {
+  font-size: 80px;
+  margin-bottom: 40px; /* Spacing between header and text */
+}
+.landing p {
+  font-size: var(--text-size);
+  margin-bottom: 30px; /* Spacing between text and button */
+}
+.landing button {
+  display: block;
+  margin: auto;
+  border-radius: 100px;
+  padding: 20px 50px;
+  font-size: var(--text-size);
+}
+
 .survey {
   display: block;
   margin: auto;
-  margin-top: 150px;
+  margin-top: 100px;
   border: 1px solid #000000;
-  border-radius :10px;
+  border-radius :25px;
   padding: 20px;
   background-color: white;
   width: 250px;
+  box-shadow: 1px 2px 5px 0px grey;
+  padding-bottom: 30px;
 }
 
 .survey-title {
   margin-bottom: 20px;
   text-align: center;
+}
+
+.video {
+  display: block;
+  margin: auto;
+  margin-top: 100px;
+  border: 1px solid #000000;
+  border-radius :25px;
+  padding: 20px;
+  background-color: white;
+  width: 500px;
+  height: 430px;
+  box-shadow: 1px 2px 5px 0px grey;
 }
 
 .button {
@@ -46,6 +96,16 @@ body {
   border-radius: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  cursor: pointer;
+  transition: box-shadow, 0.3s;
+}
+
+.button-container {
+  display: flex;
+}
+
+.button:hover {
+  box-shadow: 1px 2px 2px 0px grey;
 }
 
 .options{
