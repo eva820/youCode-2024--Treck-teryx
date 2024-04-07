@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 212,
+            "activePatchIndex": 214,
             "patches": [
                 {
                     "date": 1712440959045,
@@ -856,6 +856,14 @@
                 {
                     "date": 1712505782291,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -245,9 +245,9 @@\n     let productUrl = `https://arcteryx.com/ca/en/shop/mens/${product.slug}`;\n \n     // Handle special cases where the URL doesn't follow the standard format\n     const specialCases = {\n-      \"gamma-lightweight-hoody\": \"https://arcteryx.com/ca/en/shop/mens/gamma-lightweight-hoody?CMPID=ps|shp|std|google|Arc%27teryx_Google-Standard-Shopping_S23_Performance_BOF_R:NAM_C:CA_L:EN|||151538539338-663122094952&utm_souce=&utm_medium=ps|shp|std&utm_campaign=Arc%27teryx_Google-Standard-Shopping_S23_Performance_BOF_R:NAM_C:CA_L:EN&gclsrc=aw.ds&gad_source=1&gclid=Cj0KCQjwiMmwBhDmARIsABeQ7xRtg9BieWTTGjWCqV9nVAWWc2L-Zeq1bL_7MrF6pJHICTEwExnXu3AaArxwEALw_wcB\",\n+      \"mens/gamma-lightweight-hoody\": \"https://arcteryx.com/ca/en/shop/mens/gamma-lightweight-hoody?CMPID=ps|shp|std|google|Arc%27teryx_Google-Standard-Shopping_S23_Performance_BOF_R:NAM_C:CA_L:EN|||151538539338-663122094952&utm_souce=&utm_medium=ps|shp|std&utm_campaign=Arc%27teryx_Google-Standard-Shopping_S23_Performance_BOF_R:NAM_C:CA_L:EN&gclsrc=aw.ds&gad_source=1&gclid=Cj0KCQjwiMmwBhDmARIsABeQ7xRtg9BieWTTGjWCqV9nVAWWc2L-Zeq1bL_7MrF6pJHICTEwExnXu3AaArxwEALw_wcB\",\n       // Add other special cases here\n     };\n \n     // Check if the current product is a special case and adjust the URL if so\n"
+                },
+                {
+                    "date": 1712506754391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -221,9 +221,9 @@\n \n         <label>\n           Acitivity:\n           <select value={userSelections.baseColor} onChange={handleAcitivityChange}>\n-            <option value=\"hikinh\">Hiking</option>\n+            <option value=\"hiking\">Hiking</option>\n             <option value=\"biking\">Biking</option>\n             <option value=\"running\">Running</option>\n             <option value=\"climbing\">Climbing</option>\n             <option value=\"skiing\">Skiing</option>\n"
+                },
+                {
+                    "date": 1712507052708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n       ...prev,\n       baseColor: newBaseColor, // Update baseColor in the state based on selection\n       \n     }));\n-    // console.log(userSelections.baseColor)\n+ \n \n   };\n \n   useEffect(() => {\n"
                 }
             ],
             "date": 1712440959045,

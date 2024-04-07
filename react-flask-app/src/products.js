@@ -43,7 +43,7 @@ const ProductsComponent = () => {
       baseColor: newBaseColor, // Update baseColor in the state based on selection
       
     }));
-    // console.log(userSelections.baseColor)
+ 
 
   };
 
@@ -222,7 +222,7 @@ const ProductsComponent = () => {
         <label>
           Acitivity:
           <select value={userSelections.baseColor} onChange={handleAcitivityChange}>
-            <option value="hikinh">Hiking</option>
+            <option value="hiking">Hiking</option>
             <option value="biking">Biking</option>
             <option value="running">Running</option>
             <option value="climbing">Climbing</option>
