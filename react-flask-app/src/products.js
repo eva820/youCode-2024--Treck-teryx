@@ -7,6 +7,7 @@ const ProductsComponent = () => {
     gender: 'men',
     categoryUrl: '/ca/en/c/mens/shell-jackets',
     productType: 'shell-jackets',
+    // baseColor: '',
   });
 
   const handleGenderChange = (e) => {
@@ -15,6 +16,7 @@ const ProductsComponent = () => {
       ...prev,
       gender: newGender,
       categoryUrl: `/ca/en/c/${newGender}/${prev.productType}`,
+    //   baseColor: color === 'any' ? '' : color,
     }));
   };
 
@@ -27,6 +29,14 @@ const ProductsComponent = () => {
     }));
   };
 
+
+//   const handleColorChange = (color) => {
+//     setUserSelections(prev => ({
+//       ...prev,
+//       baseColor: color === 'any' ? '' : color,
+//     }));
+//   };
+
   useEffect(() => {
     const fetchProducts = async () => {
       const queryParams = new URLSearchParams({
@@ -35,8 +45,7 @@ const ProductsComponent = () => {
         fl: 'analytics_name,collection,colour_images_map,colour_images_map_ca,description,discount_price_ca,gender,hover_image,is_new,is_pro,is_revised,price_ca,pid,review_count,rating,slug,title,thumb_image',
         efq: `genders:("${userSelections.gender}")`, // Dynamic gender value
         _br_uid_2: 'uid=8986126272758:v=15.0:ts=1709256759599:hc=469',
-        // ref_url: `https://arcteryx.com${userSelections.categoryUrl}`,
-        // ref_url: `ref_url=https%3A%2F%2Farcteryx.com%2Fca%2Fen`,
+        // colorQuery: (userSelections.baseColor ? `?base_colours=${userSelections.baseColor}` : ''),
         ref_url: `https://arcteryx.com/ca/en`,
 
         url: `https://arcteryx.com${userSelections.categoryUrl}`, //ACTUAL URL TO LIST OF PRODUCTS 
@@ -46,6 +55,7 @@ const ProductsComponent = () => {
         view_id: 'ca',
         request_type: 'search',
         search_type: 'category',
+        
         q: userSelections.productType, 
       }).toString();
 
@@ -89,13 +99,27 @@ const ProductsComponent = () => {
         Product Type:
                 <select value={userSelections.productType} onChange={handleProductTypeChange}>
                 <option value="shoes">Shoes</option>
-                <option value="jackets">Jacket</option>
+                
                 <option value="shell-jackets">Shell Jacket</option>
-                <option value="shirts">Shirt</option>
+              
                 <option value="pants">Pants</option>
+                <option value="insulated-jackets">Insulated Jackets</option>
+                <option value="fleece">Fleece</option>
+                <option value="base-layer">Base Layer</option>
+                <option value="shirts-and-tops">Shirts & Tops</option>
+                <option value="shorts">Shorts</option>
+
+
+
+
+                
                 {/* Add more options as needed */}
             </select>
         </label>
+
+
+
+        
 
     
     </div>
