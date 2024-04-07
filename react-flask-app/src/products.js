@@ -15,7 +15,8 @@ const ProductsComponent = () => {
     categoryUrl: '/ca/en/c/mens/shell-jackets',
     productType: 'shell-jackets',
     baseColor: '', // Initialize baseColor in the state
-    size: '', // Initialize size in the state
+    size: '', // Initialize size in the state, 
+    activity: '', 
   });
 
   const handleGenderChange = (e) => {
@@ -27,6 +28,14 @@ const ProductsComponent = () => {
     }));
   };
 
+  const handleAcitivityChange = (e) => {
+    const newActivity = e.target.value; 
+    setUserSelections(prev => ({
+      ...prev,
+      activity: newActivity, //updated based on activity  
+    }))
+  }
+
   const handleColorChange = (e) => {
     const newBaseColor = e.target.value;
     setUserSelections(prev => ({
@@ -34,7 +43,7 @@ const ProductsComponent = () => {
       baseColor: newBaseColor, // Update baseColor in the state based on selection
       
     }));
-    // console.log(userSelections.baseColor)
+ 
 
   };
 
@@ -102,33 +111,55 @@ const ProductsComponent = () => {
 
 
   useEffect(() => {
-    const filtered = products.map(product => {
-      let matchedImageUrl = ''; // Initialize as empty to signify no image by default
+    const activityKeywords = {
+      hiking: ['hike', 'trail', 'outdoor'],
+      running: ['run', 'marathon', 'speed'],
+      climbing: ['climb', 'boulder', 'mountain'],
+      // Add other activities as necessary
+    };
   
-      // Handle the 'any' case to show all products without specific color matching
+    // First, filter by color
+    const colorFiltered = products.map(product => {
+      let matchedImageUrl = '';
+  
+      // Handle the 'any' color case or specific color selection
       if (userSelections.baseColor.toLowerCase() === 'any') {
-        matchedImageUrl = product.hover_image; // Use hover_image for all products
+        matchedImageUrl = product.hover_image;
       } else {
-        // Attempt to find a color match only for a specific color selection
         const colorMatchEntry = product.colour_images_map_ca?.find(entry =>
           entry.toLowerCase().startsWith(userSelections.baseColor.toLowerCase() + ":::")
         );
-        // Use the matched color image if found; otherwise, leave matchedImageUrl empty
         if (colorMatchEntry) {
           matchedImageUrl = colorMatchEntry.split(':::')[3];
         }
       }
   
-      // Return product with either the matched image, hover image for 'any', or empty
       return {
         ...product,
         displayImage: matchedImageUrl
       };
-    });
+    }).filter(product => product.displayImage); // Ensure there's a display image
   
-    setFilteredProducts(filtered);
-  }, [products, userSelections.baseColor]);
+    let filteredProducts;
+    if (userSelections.activity && userSelections.activity !== 'any' && activityKeywords[userSelections.activity]) {
+      filteredProducts = colorFiltered.filter(product => {
+        return activityKeywords[userSelections.activity].some(keyword =>
+          product.description.toLowerCase().includes(keyword)
+        );
+      });
   
+      // If no products match the activity, keep the array empty or fallback to a specific behavior
+      if (filteredProducts.length === 0) {
+        // Optional: Set filteredProducts to null or [] depending on how you want to handle no matches
+      }
+    } else {
+      // If activity is 'any', or no specific activity filtering logic is needed, use all products filtered by color
+      filteredProducts = colorFiltered;
+    }
+  
+    setFilteredProducts(filteredProducts);
+  
+  }, [products, userSelections.baseColor, userSelections.activity]);
   
   
   
@@ -147,6 +178,7 @@ const ProductsComponent = () => {
           <option value="men">Men</option>
           <option value="women">Women</option>
         </select>
+        
       </label>
       <label>
         Product Type:
@@ -186,15 +218,56 @@ const ProductsComponent = () => {
             {/* Add more color options as needed */}
           </select>
         </label>
+
+        <label>
+          Acitivity:
+          <select value={userSelections.baseColor} onChange={handleAcitivityChange}>
+            <option value="hiking">Hiking</option>
+            <option value="biking">Biking</option>
+            <option value="running">Running</option>
+            <option value="climbing">Climbing</option>
+            <option value="skiing">Skiing</option>
+            <option value="Any">Any</option>
+
+
+
+
+
+
+            {/* Add more color options as needed */}
+          </select>
+        </label>
     
     </div>
     <ul>
-        {filteredProducts.map((product) => (
-          <li key={product.pid}>
-           {product.title} - {product.gender} - <img src={product.displayImage} alt={product.title} style={{ width: '50px' }} />
-          </li>
-        ))}
-      </ul>
+  {filteredProducts.map((product) => {
+    // Standard URL format
+    let productUrl = `https://arcteryx.com/ca/en/shop/mens/${product.slug}`;
+
+    // Handle special cases where the URL doesn't follow the standard format
+    const specialCases = {
+      "mens/gamma-lightweight-hoody": "https://arcteryx.com/ca/en/shop/mens/gamma-lightweight-hoody?CMPID=ps|shp|std|google|Arc%27teryx_Google-Standard-Shopping_S23_Performance_BOF_R:NAM_C:CA_L:EN|||151538539338-663122094952&utm_souce=&utm_medium=ps|shp|std&utm_campaign=Arc%27teryx_Google-Standard-Shopping_S23_Performance_BOF_R:NAM_C:CA_L:EN&gclsrc=aw.ds&gad_source=1&gclid=Cj0KCQjwiMmwBhDmARIsABeQ7xRtg9BieWTTGjWCqV9nVAWWc2L-Zeq1bL_7MrF6pJHICTEwExnXu3AaArxwEALw_wcB",
+      // Add other special cases here
+    };
+
+    // Check if the current product is a special case and adjust the URL if so
+    if (specialCases[product.slug]) {
+      productUrl = specialCases[product.slug];
+    }
+
+    // Log the URL to the console for each product
+    console.log(`Product URL for ${product.title}: ${productUrl}`);
+
+    return (
+      <li key={product.pid}>
+        <a href={productUrl} target="_blank" rel="noopener noreferrer">
+          {product.title} - {product.gender} - <img src={product.displayImage} alt={product.title} style={{ width: '50px' }} />
+        </a>
+      </li>
+    );
+  })}
+</ul>
+
   </div>
   );
 };
