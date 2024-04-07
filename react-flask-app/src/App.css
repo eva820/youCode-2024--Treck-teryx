@@ -123,51 +123,137 @@ body {
   box-shadow: 1px 2px 2px 0px grey;
 }
 
-.recommendation {
-  display: flex;
-  flex-direction: row;
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
+/*
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 5px;
   margin-right: 10px;
 }
+*/
 
-.grid-item {
+.left {
   display: block;
-  
-  margin: auto;
-  margin-right: 20px;
-  margin-top: 50px;
+  margin: 50px auto;
   border: 1px solid var(--dark-green);
   border-radius :25px;
   padding: 20px;
   background-color: white;
-  width: 160px;
-  height: 160px;
+  width: 400px;
+  height: 480px;
   box-shadow: 1px 2px 5px 0px var(--dark-green);
   padding-bottom: 30px;
 }
 
-.product {
+.trails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.trail-item {
   display: block;
   margin: auto;
-  margin-right: 50px;
-  margin-top: 50px;
+  border: 1px solid var(--dark-green);
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  width: fill-available;
+  height: fill-available;
+}
+
+.trail-columns {
+  display: flex;
+  flex-direction: row;
+}
+
+.trail-item img {
+  width:130px;
+  height:100px;
+  margin-right: 10px;
+}
+
+.trail-item p {
+  margin: 0px;
+}
+
+.trail-item h4 {
+  font-size: 15px;
+  margin:0px;
+  margin-bottom: 10px;
+}
+
+.middle {
+  display: block;
+  margin: 50px auto;
   border: 1px solid var(--dark-green);
   border-radius :25px;
   padding: 20px;
   background-color: white;
-  width: 300px;
+  width: 400px;
+  height: 480px;
   box-shadow: 1px 2px 5px 0px var(--dark-green);
   padding-bottom: 30px;
+}
+
+.right {
+  display: block;
+  margin: 50px auto;
+  border: 1px solid var(--dark-green);
+  border-radius :25px;
+  padding: 20px;
+  background-color: white;
+  width: 400px;
+  height: 480px;
+  box-shadow: 1px 2px 5px 0px var(--dark-green);
+  padding-bottom: 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  width: fill-available;
+  height: fill-available;
+  padding-bottom: 50px;
+}
+
+.grid-item {
+  display: block;
+  margin: auto;
+  border: 1px solid var(--dark-green);
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  width: fill-available;
+  height: fill-available;
+}
+
+.grid-item p {
+  margin: 0px;
+}
+
+.grid-item h4 {
+  font-size: 15px;
+  margin:0px;
+  margin-bottom: 10px;
+}
+
+.grid-item img {
+  width: 50%;
+  height: auto;
 }
 
 .placeholder {
   width: fill-available;
-  height: fill-available;
+  height: 290px;
 }
 
 .input-container {
