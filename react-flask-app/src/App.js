@@ -8,7 +8,7 @@ import RecommendProduct from './recommendProduct';
 function Header() {
   return (
     <header className="App-header">
-      <p>Project Name</p>
+      <p>Treck'teryx</p>
     </header>
   )
 }
@@ -173,7 +173,7 @@ const Landing = () => {
       {showLanding ? (
         <div className="landing">
           {/* Landing component */}
-          <h1>Welcome to 🦄🦄🦄!</h1>
+          <h1>Welcome to Treck'teryx!</h1>
           <p>A product recommendation service for individuals of all experience levels seeking outdoor adventure!
             <br></br>
             Use button below to receive recommendations tailored to your needs!</p>
