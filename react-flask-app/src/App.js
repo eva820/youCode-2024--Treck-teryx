@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import './App.css';
 import Stores from './Stores';
-import { RecommendProduct } from './recommendProduct';
+import RecommendProduct from './recommendProduct';
 
 function Header() {
   return (
@@ -190,9 +190,6 @@ function App() {
       <div className="App">
         <Header />
         <Landing />
-		<div>
-		  <Stores></Stores>
-		</div>
       </div>
     </div>
   )

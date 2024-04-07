@@ -198,3 +198,18 @@ body {
   margin-left: 20px;
   margin-top: 5px;
 }
+
+.stores {
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+  margin-left: 400px;
+  margin-right: 400px;
+  border: 1px solid var(--dark-green);
+  border-radius :25px;
+  padding: 20px;
+  background-color: white;
+  width: fill-available;
+  box-shadow: 1px 2px 5px 0px var(--dark-green);
+  padding-bottom: 30px;
+}
