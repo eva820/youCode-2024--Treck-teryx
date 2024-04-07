@@ -16,3 +16,12 @@ async function readJsonFile(filePath) {
 const filePath = './StoreData.json';
 readJsonFile(filePath);
 
+function Stores() {
+	return (
+		<div>
+			<p>Hello</p>
+		</div>
+	)
+}
+
+export default Stores
