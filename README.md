@@ -1,5 +1,8 @@
 # Treck'teryx - A tailored recommendation service for individuals of all experience levels seeking outdoor adventure!
 
+![image](https://github.com/eva820/youCode-2024--Treck-teryx/assets/125091369/1f75ea9c-dbb9-418f-9ab0-ad7b17f9bdae)
+`Streamlining the planning so you can get to doing what you love faster!`
+
 ## Inspiration
 As individuals ourselves who sometimes find it overwhelming when trying to start a new outdoor activity, Treck'teryx was created to make this process easier by helping users do all the planning - from choosing the right outdoor apparel and accessories to finding the best trails and routes for the activity - so that adventurers of all experience levels can focus on being active and staying healthy.
 
@@ -9,9 +12,12 @@ Treck'teryx first asks users to complete a quick survey to determine their prefe
 ## How we built it!
 As a team, we used Github for version control. To build the website, we used React.JS for frontend development, and Flask to integrate the frontend with the backend, which was built with Python. 
 
-The computer vision component was built using the OpenCV and Google’s MediaPipe libraries in Python. OpenCV is used to decode and stream the webcam data to which MediaPipe adds the landmarks to (the dots you see on a person). With this combination, we have set up quality assurance functions to ensure we can get a good few seconds of data, which we then use PyTorch on to compute the averages of several ratios of a person’s body based on their height.
+The computer vision component was built using the OpenCV and Google’s MediaPipe libraries in Python. OpenCV is used to decode and stream the webcam data to which MediaPipe adds the landmarks to (the dots you see mapped on a figure). With this combination, we have set up quality assurance functions to ensure we can get a good few seconds of data, which we then use PyTorch on to compute the averages of several ratios of a person’s body based on their height.
 
-Afterwards, by using prompt engineering on the GPT 3.5 Turbo model, we are able to predict the user’s measurements on Arc’Teryx products based on their body scan. 
+Afterwards, by using prompt engineering on the GPT 3.5 Turbo model, we are able to predict the user’s measurements on Arc’teryx products based on their body scan. 
+
+![image](https://github.com/eva820/youCode-2024--Treck-teryx/assets/125091369/c83949d2-6e32-45d9-a9e5-ff70e2a92c07)
+`Check out this cool body scan feature that analyzes your clothing size measurements for you!`
 
 ## Challenges we ran into...
 _Body Scan Feature:_
@@ -28,3 +34,6 @@ Although we encountered numerous obstacles, the most important thing we learned 
 
 ## What's next for Treck'teryx?
 We see a great opportunity for Treck’teryx to get implemented in various fields, such as being implemented into in-person Arc'teryx shops and partnerships.
+
+## Presentation Pitch Slides Deck
+https://docs.google.com/presentation/d/1RZUA3sCIa3l3c5tdb7bksX2rSd9sgSCCIcjNVkj5_fQ/edit?usp=sharing
