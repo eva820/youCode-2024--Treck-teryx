@@ -1,7 +1,7 @@
 # Treck'teryx - a tailored recommendation service for individuals of all experience levels seeking outdoor adventure!
 
 ![image](https://github.com/eva820/youCode-2024--Treck-teryx/assets/125091369/1f75ea9c-dbb9-418f-9ab0-ad7b17f9bdae)
-`Streamlining your entire planning process so you can get to doing the activities you love faster -- from jogging to skiing to hiking!`
+`Streamlining the planning so you can get to doing the activities you love faster - from skiing to hiking!`
 
 ## Inspiration
 As individuals ourselves who sometimes find it overwhelming when trying to start a new outdoor activity, Treck'teryx was created to make this process easier by helping users do all the planning - from choosing the right outdoor apparel and accessories to finding the best trails and routes for the activity - so that adventurers of all experience levels can focus on being active and staying healthy.
@@ -17,7 +17,7 @@ The computer vision component was built using the OpenCV and Google’s MediaPip
 Afterwards, by using prompt engineering on the GPT 3.5 Turbo model, we are able to predict the user’s measurements on Arc’teryx products based on their body scan. 
 
 ![image](https://github.com/eva820/youCode-2024--Treck-teryx/assets/125091369/c83949d2-6e32-45d9-a9e5-ff70e2a92c07)
-`SITE FEATURE -- Check out this cool body scan function that analyzes your figure and then finds the right size measurements for you!`
+`Check out this cool body scan function that analyzes and finds the right size measurements for you!`
 
 ## Challenges we ran into...
 _Body Scan Feature:_  
