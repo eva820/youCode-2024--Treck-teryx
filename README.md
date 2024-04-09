@@ -1,7 +1,7 @@
-# Treck'teryx - A tailored recommendation service for individuals of all experience levels seeking outdoor adventure!
+# Treck'teryx - a tailored recommendation service for individuals of all experience levels seeking outdoor adventure!
 
 ![image](https://github.com/eva820/youCode-2024--Treck-teryx/assets/125091369/1f75ea9c-dbb9-418f-9ab0-ad7b17f9bdae)
-`Streamlining the planning so you can get to doing what you love faster!`
+`Streamlining your entire planning process so you can get to doing the activities you love faster -- from jogging to skiing to hiking!`
 
 ## Inspiration
 As individuals ourselves who sometimes find it overwhelming when trying to start a new outdoor activity, Treck'teryx was created to make this process easier by helping users do all the planning - from choosing the right outdoor apparel and accessories to finding the best trails and routes for the activity - so that adventurers of all experience levels can focus on being active and staying healthy.
@@ -17,13 +17,13 @@ The computer vision component was built using the OpenCV and Google’s MediaPip
 Afterwards, by using prompt engineering on the GPT 3.5 Turbo model, we are able to predict the user’s measurements on Arc’teryx products based on their body scan. 
 
 ![image](https://github.com/eva820/youCode-2024--Treck-teryx/assets/125091369/c83949d2-6e32-45d9-a9e5-ff70e2a92c07)
-`Check out this cool body scan feature that analyzes your clothing size measurements for you!`
+`SITE FEATURE -- Check out this cool body scan function that analyzes your figure and then finds the right size measurements for you!`
 
 ## Challenges we ran into...
-_Body Scan Feature:_
+_Body Scan Feature:_  
 Computer vision is hard, who knows. For as high level a language Python is, it can sink to near-C level when debugging PyTorch and OpenCV code. For quite a while, we couldn’t stream the webcam data to our website while also doing calculations on the joint coordinates of the scan. Not only is this hard to debug since it mixes the front and backend, it is also hard to debug since it’s broadcasting a continuous stream of data which renders utilities like pdb useless. 
 
-_Product Recommendation System:_
+_Product Recommendation System:_  
 We had difficulties integrating the product recommendation values with the actual site, as we were not incredibly experienced with React.JS.
 
 ## Accomplishments that we're proud of!
@@ -33,7 +33,7 @@ Above all, the Treck’teryx team is quite proud of the effort we put into this 
 Although we encountered numerous obstacles, the most important thing we learned was that perseverance goes a long way. It was our grit and passion for this project that led us to creating our Treck’teryx site despite all our struggles. This project also helped us all develop our programming abilities using React, Flask, and the other technologies we used.
 
 ## What's next for Treck'teryx?
-We see a great opportunity for Treck’teryx to get implemented in various fields, such as being implemented into in-person Arc'teryx shops and partnerships.
+We see a great opportunity for Treck’teryx to get implemented in various fields, such as being incorporate into in-person Arc'teryx stores and other partnerships. Look forward to our next update!
 
-## Presentation Pitch Slides Deck
-https://docs.google.com/presentation/d/1RZUA3sCIa3l3c5tdb7bksX2rSd9sgSCCIcjNVkj5_fQ/edit?usp=sharing
+## Links
+🦄 [Presentation Pitch Slide Deck](https://docs.google.com/presentation/d/1RZUA3sCIa3l3c5tdb7bksX2rSd9sgSCCIcjNVkj5_fQ/edit?usp=sharing)
